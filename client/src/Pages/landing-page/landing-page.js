@@ -19,7 +19,7 @@ export default function LandingPage() {
         else {
             setView(() => <Login></Login>)
         }
-    }, [])
+    }, [loggedInContext])
 
     return(
         <div className="flex flex-col">

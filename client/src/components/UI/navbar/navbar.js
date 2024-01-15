@@ -20,11 +20,11 @@ export default function Navbar() {
         <div className="navbar fixed top-0 min-h-screen w-16 
         flex flex-col justify-end sm:justify-start
         bg-gray-900 text-white shadow-lg">
-            <NavbarIcon icon={<FaPoo size="20" />} text='Landing Page' path={'/gig-mates'}/>
+            <NavbarIcon icon={<FaPoo size="20" />} text='Landing Page'/>
             <NavbarIcon icon={<FaFire size="20" />} path={'/post'} text='Feed' />
             <NavbarIcon icon={<BsFillLightningFill size="20" />} path={'/events'} text='Events' />
             <NavbarIcon icon={<BsPlus size="32" />} path={'/edit-profile'} text='Edit Profile'/>
-            <NavbarIconFunction icon={<FaSignOutAlt size="20" />} callback={handleLogoutResponse} path={'/gig-mates'} text='Logout'/>
+            <NavbarIconFunction icon={<FaSignOutAlt size="20" />} callback={handleLogoutResponse} text='Logout'/>
         </div>
     )
 }

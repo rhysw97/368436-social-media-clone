@@ -1,5 +1,5 @@
 {
-  "homepage": "https://rhysw97.github.com/gig-mates",
+  "homepage": "./",
   "name": "gig-mates",
   "version": "0.1.0",
   "private": true,
@@ -10,14 +10,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
@@ -40,7 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:5000/",
   "devDependencies": {
     "@typescript-eslint/parser": "^5.55.0",
     "autoprefixer": "^9.8.8",

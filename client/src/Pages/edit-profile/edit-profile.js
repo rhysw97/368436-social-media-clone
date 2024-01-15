@@ -1,9 +1,7 @@
-import { getRequest, postRequest, formPostRequest } from "../../utils/server-queries.ts";
+import { getRequest} from "../../utils/server-queries.ts";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Tags from '../../components/Tags/Tags.js'
-import Modal from "../../components/UI/modal/modal.js";
-import Password from "../register/password.js";
+
 
 export default function EditProfile() {
         //profile inputs
@@ -12,7 +10,6 @@ export default function EditProfile() {
     const [bio, setBio] = useState("");
     const [genres, setGenres] = useState([]);
     const [artists, setArtists] = useState([]);
-    const [isFilePicked, setIsFilePicked] = useState(false);
     
 
 
@@ -50,7 +47,6 @@ export default function EditProfile() {
     const handleChange = (e) => {
         const file = e.target.files[0];
         setImage(() => file);
-        setIsFilePicked(true);
     };
   
     return (

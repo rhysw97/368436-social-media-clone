@@ -2,7 +2,7 @@ import CreatePost from './Pages/post-page/create-post';
 import Register from './Pages/register/register';
 import LandingPage from './Pages/landing-page/landing-page';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/UI/navbar/navbar';
 import "./assets/main.css"
 import { USERNAME, LOGGEDIN } from './data/contexts';
@@ -30,7 +30,7 @@ function App() {
             <div className="fixed -z-10 min-h-screen w-screen top-0 left-0 bg-black opacity-40" ></div>
         <div className="relative mx-auto min-h-screen">
           <Routes>
-              <Route path="/gig-mates" element={<LandingPage/>} />
+              <Route path="/" element={<LandingPage/>} />
               <Route path="/register" element={<Register/>} />
               <Route element={<PrivateRoutes/>}>
                 <Route path="/post" element={<CreatePost/>} />

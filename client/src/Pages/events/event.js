@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {useNavigate} from "react-router-dom"
 import { FaClock, FaCalendar } from "react-icons/fa";
 
@@ -14,7 +14,7 @@ export default function Event(props) {
     return(
         <div className="  justify-around bg-green-500 p-4 rounded-lg mx-auto shadow-black shadow-md md:basis-[45%] lg:basis-[30%] basis-[90%]" onClick={handleClick}>
             <div className="flex flex-col">
-                <img className="w-[100%] h-[250px] object-cover" src={props.event.img }></img>
+                <img className="w-[100%] h-[250px] object-cover" src={props.event.img } alt=""></img>
                 <h2 className="text-center text-shadow-lg py-5 font-extrabold text-4xl">{props.event.artist}</h2>
                 
             </div>

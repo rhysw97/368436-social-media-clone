@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Post from './post'
-import { postRequest, getRequest } from '../../utils/server-queries.ts';
-import UserProfile from '../../data/userProfile';
-import Logout from '../../components/Login/logout';
+import { postRequest} from '../../utils/server-queries.ts';
 import {useLocation} from 'react-router-dom';
 
 //component to allow user to create a post

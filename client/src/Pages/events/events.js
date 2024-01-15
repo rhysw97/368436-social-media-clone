@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import   {BlackMassImage, HamishHawkImage, QuelleChrisImage } from "./../../assets/images/image-links"  
-import { FaCalendar, FaClock, FaLocationArrow, FaPlus} from "react-icons/fa";
 import CreateEvent from './create-event'   
 import Modal from './../../components/UI/modal/modal';        
 import { getRequest } from "../../utils/server-queries.ts";

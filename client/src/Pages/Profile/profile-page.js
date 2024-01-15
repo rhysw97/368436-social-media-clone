@@ -14,7 +14,7 @@ export default function ProfilePage(){
     useEffect(() => {
         getProfile()
         
-    },[])
+    },[getProfile])
     
     function mapArrayToList(array, arrayName) {
         console.log('array', array)
@@ -50,7 +50,7 @@ export default function ProfilePage(){
             <div className="ml-16 w-5/6 bg-gray-400 shadow-black shadow-lg h-screen">
                 <div className="flex flex-col-reverse justify-end gap-5 m-b4">
                     <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center ">{profile.username}</h1>
-                    <img className="w-[80%] mx-auto object-0" src={`http://localhost:5000/uploads/${profile.profilePicture}`} alt="profile picture"/>
+                    <img className="w-[80%] mx-auto object-0" src={`http://localhost:5000/uploads/${profile.profilePicture}`}/>
                 </div>
                 <p className=" w-[100%] button-green mt-4" onClick={()=> {setPasswordModalActive(true)}}>Change Password</p>
                 <Modal show={passwordModalActive} close={()=> setPasswordModalActive(false)} content={
