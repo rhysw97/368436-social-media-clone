@@ -1,0 +1,54 @@
+{
+  "homepage": "https://rhysw97.github.com/gig-mates",
+  "name": "gig-mates",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run watch:css && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://127.0.0.1:5000/",
+  "devDependencies": {
+    "@typescript-eslint/parser": "^5.55.0",
+    "autoprefixer": "^9.8.8",
+    "gh-pages": "^6.1.1",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^10.1.0",
+    "react-icons": "^5.0.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^4.9.5"
+  }
+}
