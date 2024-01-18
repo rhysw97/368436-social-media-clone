@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Post from './post'
 import { postRequest, getRequest } from '../../utils/server-queries.ts';
+import { USERNAME } from '../../data/contexts.js';
 
 //component to allow user to create a post
 export default function CreatePost() {
@@ -11,9 +12,12 @@ export default function CreatePost() {
     async function newPost(e) {
         if(postInputRef.current.value) {
             const data = {post: postInputRef.current.value}
-            await postRequest('posts', data)
             postInputRef.current.value = ''
-            getRecentPosts()
+
+            await postRequest('posts', data)
+            
+
+            await getRecentPosts()
         }
     }
 

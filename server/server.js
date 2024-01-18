@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
+const session = require('cookie-session');
 const path = require('path');
 const { addNewPost, getPosts } = require('./components/post.js');
 const { User } = require('./components/user.js');

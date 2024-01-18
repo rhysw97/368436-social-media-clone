@@ -14,7 +14,8 @@ export default function CreateEventPost() {
     async function newEventPost() {
         if(postInputRef.current.value) {
             const data = {id: id, post: postInputRef.current.value}
-           await postRequest('posts/createEventPost', data)
+            
+            await postRequest('posts/createEventPost', data)
             postInputRef.current.value = ''
             getEventPosts()
         }
