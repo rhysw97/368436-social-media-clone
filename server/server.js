@@ -33,7 +33,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// user sessions
+// cookie sessions
 app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
@@ -63,9 +63,10 @@ app.use('/profile', profileRoute);
 app.use('/events', eventRoute);
 
 // Handle any other routes with React app's index.html
-app.get('*', (req, res) => {
+//UNCOMMENT TO SERVE FRONTEND VIA PORT 5000 
+/*app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+});*/
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

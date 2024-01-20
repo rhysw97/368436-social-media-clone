@@ -2,7 +2,6 @@ import { getRequest} from "../../utils/server-queries.ts";
 import { useState, useEffect } from "react";
 import Tags from '../../components/Tags/Tags.js'
 
-
 export default function EditProfile() {
         //profile inputs
     const [name, setName] = useState("");
