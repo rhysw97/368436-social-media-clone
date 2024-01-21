@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import {getRequest, postRequest} from '../../utils/server-queries.ts'
-
+import { USERNAME } from "../../data/contexts.js";
 //component to allow user to post a comment
 export default function PostComment(props) {
+    const {usernameContext} = useContext(USERNAME);
     //state of comment component
     const [comments, setComments] = useState([])
     const commentInputRef = useRef()
@@ -14,18 +15,29 @@ export default function PostComment(props) {
 
     //function to deal with comments returned from server
     async function getComments() { 
-        setComments([]) //sets comments state back to empty array to avoid duplicates
+        
         
         //requests backends viewComments viw comments with the post and postId
-        const response = await postRequest('posts/viewComments', {postId: props.id}) 
+        const response = await postRequest('posts/viewComments', {postId: props.id})
+        setComments((currentComments) => [...response.comments]) //sets comments state back to empty array to avoid duplicates 
         console.log('response', response.comments) 
-        //loops through each comment sent back by the server
-        response.comments.forEach(comment => {
+    }
 
-            //and adds them to the comments state
-            setComments(currentComments => [...currentComments, comment])
-        });
+    const addTempComment = async (data) => {
+        console.log(usernameContext)
         
+        const profile = await getRequest('profile/profile-pic')
+        const tempPost = {
+            user: usernameContext,
+            message: data.message,
+            postId: data.postId,
+            profilePicture: profile.profilePicture
+        }
+
+        console.log(tempPost)
+        
+
+        setComments(currentComments => [...currentComments, tempPost])
     }
 
     //function to run when user comments on post
@@ -33,27 +45,28 @@ export default function PostComment(props) {
         //checks there is data in comment input field
         if(commentInputRef.current.value) {
 
-            //set the data object to c
+            //
             const data = {
-                content: commentInputRef.current.value,
+                message: commentInputRef.current.value,
                 postId: props.id, //sets postId to the id passed in when this component is initalised witin jsx
             }
 
-            postRequest('posts/comment', data)
+            addTempComment(data)
             
-            getComments()
-            console.log(typeof comments)
+            await postRequest('posts/comment', data)
+            
+            await getComments()
           
             commentInputRef.current.value = ''
         }
     }
 
    //if comments has a 
-    if(comments) {
+    if(comments.length > 0) {
         return (
             <div className="h-screen">
-                <div className="comments flex flex-col gap-10">
-                    {comments.map((comment, index) => {
+                <div className="comments flex flex-col gap-10 overflow-scroll">
+                    {comments.toReversed().map((comment, index) => {
                         return <div className="bg-white w-[90%] m-auto rounded-xl p-10" key={index}>
                            <div className="flex items-center">
                                 <img className="w-20 h-20" />
@@ -70,6 +83,7 @@ export default function PostComment(props) {
             </div>
         ) 
     } 
+
     else {
         return (
             <div>

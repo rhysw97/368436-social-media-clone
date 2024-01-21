@@ -56,14 +56,10 @@ router.post('/update-password', (request, response) => {
 })
 
 //route for getting a users profile picture (contains url param for name)
-router.get('/profile-pic', (request, response) => {
-  console.log(request.query.username)
-  let profilePicture
-  if(request.query.username) {
-    profilePicture = request.app.locals.user.getProfilePicture(request.query.username, response)
-  } else {
-    profilePicture = request.app.locals.user.getProfilePicture(request.session.username, response)
-  }
+router.get('/profile-pic', async (request, response) => {
+console.log(request.session.username)
+  const pic = await request.app.locals.user.getProfilePicture(request.session.username, response) 
+  console.log(pic)
 }), 
 
 module.exports = router

@@ -3,7 +3,7 @@ import Modal from "../UI/modal/modal"
 export default function LikedBy(props) {
     const [modalActive, setModalActive] = useState(false);
 
-   const listOfUsers = <div>
+     const listOfUsers = <div>
         {props.likedBy.map((user) => {
             return <p>{user}</p>
         })}
