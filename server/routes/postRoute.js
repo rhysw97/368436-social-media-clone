@@ -8,7 +8,7 @@ router.post('/', (request, response) => {
 
     const newPost  = {
         username: request.session.username,
-        post: data.post
+        message: data.message
     };
    createPost(newPost, request.app.locals.user)
 })
@@ -28,7 +28,7 @@ router.post('/createEventPost', (request) => {
 
     const newPost  = {
         username: request.session.username,
-        post: data.post,
+        message: data.message,
         eventId: data.id
     };
   createEventPost(newPost, request.app.locals.user)
@@ -55,25 +55,25 @@ router.delete('/deletePost', (request, response) => {
 router.post('/comment', (request, response) => {
     console.log('NEW Comment',request.body)
     console.log('name', request.session.username)
-    commentOnPost(request.body.postId, request.session.username, request.body.content, request)
+    commentOnPost(request.body.postId, request.session.username, request.body.message, request)
 })
 
 router.post('/viewComments', async (request, response) => {
     console.log(request.body)
     const comments = await viewComments(request.body.postId)
     console.log('comments', comments)
-    response.send(comments)
+    response.send({comments: comments})
 })
 
 async function getRecentPosts(numberOfPosts, response) {
     const recentPosts = await getPosts(numberOfPosts)
   //  console.log('recentPosts', recentPosts)
-    response.send(recentPosts)
+    response.send({recentPosts: recentPosts})
 }
 
 async function getRecentEventPosts(numberOfPosts, eventId, response) {
     const recentEventPosts = await getEventPosts(numberOfPosts, eventId)
-    response.send(recentEventPosts)
+    response.send({recentEventPosts: recentEventPosts})
 }
 
 async function createPost(newPost, user) {

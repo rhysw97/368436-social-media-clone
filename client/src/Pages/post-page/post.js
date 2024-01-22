@@ -37,12 +37,12 @@ export default function Post(props) {
                     <img className="w-[50px] h-[50px]  bg-black rounded-full" src={`./uploads/${postData.profilePicture}`}/>
                 </div>
                 <div className="flex w-[100%] justify-between">
-                <p className="mx-[6%] pt-1 text-3xl">{postData.username}</p>
+                <p className="mx-[6%] pt-1 text-3xl">{postData.postedBy}</p>
                 {posterButtons}
                 </div>
             </div>
             <div className="my-[10px] min-h-[100px] flex align-middle">
-                <p className="mx-[9.5%] my-auto text-xl">{postData.content}</p>
+                <p className="mx-[9.5%] my-auto text-xl">{postData.message}</p>
             </div>
             
             <div className="flex flex-col gap-6">
