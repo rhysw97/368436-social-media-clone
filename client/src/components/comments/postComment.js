@@ -19,8 +19,9 @@ export default function PostComment(props) {
         
         //requests backends viewComments viw comments with the post and postId
         const response = await postRequest('posts/viewComments', {postId: props.id})
-        setComments((currentComments) => [...response.comments]) //sets comments state back to empty array to avoid duplicates 
-        console.log('response', response.comments) 
+        console.log(response)
+        //setComments((currentComments) => [...response.comments]) //sets comments state back to empty array to avoid duplicates 
+       // console.log('response', response.comments) 
     }
 
     const addTempComment = async (data) => {
@@ -28,17 +29,17 @@ export default function PostComment(props) {
         console.log(usernameContext)
         
         const profile = await getRequest('profile/profile-pic')
-        const tempPost = {
+        const tempComment = {
             user: usernameContext,
             message: data.message,
             postId: data.postId,
             profilePicture: profile.profilePicture
         }
 
-        console.log(tempPost)
+   
         
 
-        setComments(currentComments => [...currentComments, tempPost])
+        setComments(currentComments => [...currentComments, tempComment])
     }
 
     //function to run when user comments on post
