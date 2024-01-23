@@ -39,8 +39,6 @@ export default function CreateEventPost() {
             message: data.message,
             profilePicture: profile.profilePicture,
             likedBy: [],
-            comments: [],
-            tempPost: true
         }
 
         console.log(tempPost)
@@ -56,7 +54,21 @@ export default function CreateEventPost() {
         const response = await postRequest('posts/eventPosts', {id: id})
         console.log('response', response)
         setPosts((currentPosts) => [...response.recentEventPosts])
-       
+       /* const postList = []
+        serverPosts.forEach(post => {
+           postList.push({
+                id: post._id, 
+                username: post.postedBy, 
+                content: post.message,
+                likes: post.likes, 
+                likedBy: post.likedBy, 
+                comments: post.comments,
+                date: post.date,
+                eventId: id
+            })
+        });
+
+        setPosts(() => [...postList])*/
     }
 
     return(
