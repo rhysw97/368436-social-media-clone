@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import Post from './post'
-import { postRequest} from '../../utils/server-queries.ts';
+import {postRequest, getRequest} from '../../utils/server-queries.ts';
 import {useLocation} from 'react-router-dom';
+import { USERNAME } from '../../data/contexts.js';
 
 //component to allow user to create a post
 export default function CreateEventPost() {
+    const {usernameContext, setUsernameContext} = useContext(USERNAME)
     const [posts, setPosts] = useState([]); //recent posts state
     const postInputRef = useRef() //reference to post input
     const {state} = useLocation()
@@ -13,12 +15,31 @@ export default function CreateEventPost() {
     //function to send new post to backend
     async function newEventPost() {
         if(postInputRef.current.value) {
-            const data = {id: id, post: postInputRef.current.value}
-            
+            const data = {id: id, message: postInputRef.current.value}
+            addTempPost(data)
             await postRequest('posts/createEventPost', data)
             postInputRef.current.value = ''
-            getEventPosts()
+            await getEventPosts()
         }
+    }
+
+    const addTempPost = async (data) => {
+        console.log(usernameContext)
+        
+        const profile = await getRequest('profile/profile-pic')
+        const tempPost = {
+            username: usernameContext,
+            message: data.message,
+            profilePicture: profile.profilePicture,
+            likedBy: [],
+            comments: []
+        }
+
+        console.log(tempPost)
+        
+        const tempPosts = posts
+        tempPosts.unshift(tempPost)
+        setPosts(currentPosts => [...tempPosts])
     }
 
     //run once when first rendered
