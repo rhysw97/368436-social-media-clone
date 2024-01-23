@@ -8,7 +8,7 @@ router.post('/', (request, response) => {
 
     const newPost  = {
         username: request.session.username,
-        post: data.post
+        post: data.message
     };
    createPost(newPost, request.app.locals.user)
 })

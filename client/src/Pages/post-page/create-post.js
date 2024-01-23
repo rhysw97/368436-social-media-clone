@@ -1,18 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import Post from './post'
 import { postRequest, getRequest } from '../../utils/server-queries.ts';
 import { USERNAME } from '../../data/contexts.js';
 
 //component to allow user to create a post
 export default function CreatePost() {
+    const {usernameContext, setUsernameContext} = useContext(USERNAME)
     const [posts, setPosts] = useState([]); //recent posts state
     const postInputRef = useRef() //reference to post input
 
     //function to send new post to backend
     async function newPost(e) {
         if(postInputRef.current.value) {
-            const data = {post: postInputRef.current.value}
+            const data = {message: postInputRef.current.value}
             postInputRef.current.value = ''
+            await addTempPost(data)
 
             await postRequest('posts', data)
             
@@ -29,7 +31,7 @@ export default function CreatePost() {
      //function to get recent posts from server
     async function getRecentPosts(){
         const serverPosts = await getRequest('posts/recentPosts', localStorage.getItem('access_token'))
-        
+      
         setPosts([])
         serverPosts.forEach(post => {
             setPosts(currentPosts => [...currentPosts, {
@@ -43,6 +45,24 @@ export default function CreatePost() {
                 profilePicture: post.profilePicture
             }])
         });
+    }
+
+    const addTempPost = async (data) => {
+        console.log(usernameContext)
+        
+        const profile = await getRequest('profile/profile-pic')
+        const tempPost = {
+            username: usernameContext,
+            message: data.message,
+            profilePicture: profile.profilePicture,
+            likedBy: [],
+            comments: []
+        }
+
+        console.log(tempPost)
+        
+
+        setPosts(currentPosts => [...currentPosts, tempPost])
     }
 
     return(
