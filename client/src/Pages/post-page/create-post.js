@@ -61,8 +61,9 @@ export default function CreatePost() {
 
         console.log(tempPost)
         
-
-        setPosts(currentPosts => [...currentPosts, tempPost])
+        const tempPosts = posts
+        tempPosts.unshift(tempPost)
+        setPosts(currentPosts => [...tempPosts])
     }
 
     return(
