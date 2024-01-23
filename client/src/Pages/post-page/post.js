@@ -42,7 +42,7 @@ export default function Post(props) {
                 </div>
             </div>
             <div className="my-[10px] min-h-[100px] flex align-middle">
-                <p className="mx-[9.5%] my-auto text-xl">{postData.content}</p>
+                <p className="mx-[9.5%] my-auto text-xl">{postData.message}</p>
             </div>
             
             <div className="flex flex-col gap-6">
@@ -52,7 +52,7 @@ export default function Post(props) {
                 </div>
                 <Modal show={commentsModalActive} close={()=> setCommentsModalActive(false)} content={<PostComment id={postData.id}/>} title={"Comments"}/>
                 <Modal show={deleteModalActive} close={()=> setDeleteModalActive(false)} content={<DeletePost id={postData.id}/>} title={"Delete"}/> 
-                <Modal show={editModalActive} close={()=> setEditModalActive(false)} content={<EditPost id={postData.id} content={postData.content}/>} title={"Edit"}/>  
+                <Modal show={editModalActive} close={()=> setEditModalActive(false)} content={<EditPost id={postData.id} content={postData.message}/>} title={"Edit"}/>  
             </div>
         </div>
     )

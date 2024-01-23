@@ -3,7 +3,7 @@ import { postRequest} from '../../utils/server-queries.ts';
 export default function EditPost(props) {
 
     let postData = {
-        content : props.content,
+        message: props.message,
         postId: props.id
     }
     const handleSave = () => {
@@ -11,7 +11,7 @@ export default function EditPost(props) {
     }
 
     const handleTextChange = (event) => {
-        postData.content = event.target.value
+        postData.message = event.target.value
     }
 
     return (

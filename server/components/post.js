@@ -127,11 +127,11 @@ async function viewComments(postId){
     return data;
 }
 
-async function editPost(postId, content, currentUser, response) { 
+async function editPost(postId, message, currentUser, response) { 
     if(await checkUserIsPoster(postId, currentUser)) {
         let found
         console.log('ITS HERE', postId)
-        await Post.findByIdAndUpdate(postId, {message: content}).exec()
+        await Post.findByIdAndUpdate(postId, {message: message}).exec()
         .then(foundData=>found=foundData)
     } else {
         response.sendStatus(403)

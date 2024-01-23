@@ -35,7 +35,7 @@ export default function CreatePost() {
             setPosts(currentPosts => [...currentPosts, {
                 id:post._id, 
                 username: post.postedBy, 
-                content: post.message,
+                message: post.message,
                 likes: post.likes, 
                 likedBy: post.likedBy, 
                 comments: post.comments,

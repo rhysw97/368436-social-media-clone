@@ -62,35 +62,23 @@ export default function PostComment(props) {
     }
 
    //if comments has a 
-    if(comments.length > 0) {
-        return (
-            <div className="h-screen">
-                <div className="comments flex flex-col gap-10 overflow-scroll">
-                    {comments.toReversed().map((comment, index) => {
-                        return <div className="bg-white w-[90%] m-auto rounded-xl p-10" key={index}>
-                           <div className="flex items-center">
-                                <img className="w-20 h-20" />
-                                <h2>{comment.user}</h2>
-                           </div>
-                                <p>{comment.message}</p>
+    return (
+        <div className="h-screen">
+            <div className="comments flex flex-col gap-10">
+                {comments.toReversed().map((comment, index) => {
+                    return <div className="bg-white w-[90%] m-auto rounded-xl p-10" key={index}>
+                        <div className="flex items-center">
+                            <img className="w-20 h-20" />
+                            <h2>{comment.user}</h2>
                         </div>
-                    })}
-                </div>
-                <div className="fixed flex items-center flex-col w-[100%] bottom-0 left-0 ">
-                    <textarea className="border-black border-2 w-[70%] text-lg rounded-lg" placeholder="add comment" ref={commentInputRef}/>
-                    <button className="button-green w-[50%] border-black border-2" onClick={commentOnPost}>Send</button>
-                </div>
+                            <p>{comment.message}</p>
+                    </div>
+                })}
             </div>
-        ) 
-    } 
-
-    else {
-        return (
-            <div>
-                <h2>Loading...</h2>
-                <input placeholder="add comment" ref={commentInputRef}/>
-                <button onClick={commentOnPost}>Send</button>
+            <div className="fixed flex items-center flex-col w-[100%] bottom-0 left-0 ">
+                <textarea className="border-black border-2 w-[70%] text-lg rounded-lg" placeholder="add comment" ref={commentInputRef}/>
+                <button className="button-green w-[50%] border-black border-2" onClick={commentOnPost}>Send</button>
             </div>
-        )
-    }
+        </div>
+    ) 
 }

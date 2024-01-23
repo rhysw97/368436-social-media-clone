@@ -44,7 +44,7 @@ router.post('/unlikePost', (request, response) => {
 
 router.post('/updatePost', (request, response) => {
     console.log(request.body)
-    editPost(request.body.postId, request.body.content, request.session.username, response)
+    editPost(request.body.postId, request.body.message, request.session.username, response)
 })
 
 router.delete('/deletePost', (request, response) => {
@@ -55,7 +55,7 @@ router.delete('/deletePost', (request, response) => {
 router.post('/comment', (request, response) => {
     console.log('NEW Comment',request.body)
     console.log('name', request.session.username)
-    commentOnPost(request.body.postId, request.session.username, request.body.content, request)
+    commentOnPost(request.body.postId, request.session.username, request.body.message, request)
 })
 
 router.post('/viewComments', async (request, response) => {
