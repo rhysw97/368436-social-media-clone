@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Post from './post'
 import { postRequest, getRequest } from '../../utils/server-queries.ts';
 import { USERNAME } from '../../data/contexts.js';
@@ -7,50 +7,42 @@ import { USERNAME } from '../../data/contexts.js';
 export default function CreatePost() {
     const [posts, setPosts] = useState([]); //recent posts state
     const postInputRef = useRef() //reference to post input
-    const {usernameContext} = useContext(USERNAME);
-
-    
-    //run once when first rendered
-    useEffect( () => {  
-        getRecentPosts()
-  
-    },[])
-
 
     //function to send new post to backend
     async function newPost(e) {
         if(postInputRef.current.value) {
-            const data = {message: postInputRef.current.value}
+            const data = {post: postInputRef.current.value}
             postInputRef.current.value = ''
-            
-            addTempPost(data)
 
             await postRequest('posts', data)
             
 
             await getRecentPosts()
-
-
         }
     }
 
-    const addTempPost = async (data) => {
-    
-        const profile = await getRequest('profile/profile-pic')
-        const tempPost = {
-            postedBy: usernameContext,
-            message: data.message,
-            profilePicture: profile.profilePicture,
-            likedBy: []
-        }
-   
-        setPosts(currentComments => [...currentComments, tempPost])
-    }
+    //run once when first rendered
+    useEffect( () => {  
+        getRecentPosts()
+  
+    },[])
      //function to get recent posts from server
-    async function getRecentPosts() {
-        const response = await getRequest('posts/recentPosts', localStorage.getItem('access_token'))
-        console.log(response)
-        setPosts((currentPosts) => [...response.recentPosts])
+    async function getRecentPosts(){
+        const serverPosts = await getRequest('posts/recentPosts', localStorage.getItem('access_token'))
+        
+        setPosts([])
+        serverPosts.forEach(post => {
+            setPosts(currentPosts => [...currentPosts, {
+                id:post._id, 
+                username: post.postedBy, 
+                content: post.message,
+                likes: post.likes, 
+                likedBy: post.likedBy, 
+                comments: post.comments,
+                date: post.date,
+                profilePicture: post.profilePicture
+            }])
+        });
     }
 
     return(

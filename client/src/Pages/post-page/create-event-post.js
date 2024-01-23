@@ -1,60 +1,39 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Post from './post'
-import {postRequest, getRequest} from '../../utils/server-queries.ts';
+import { postRequest} from '../../utils/server-queries.ts';
 import {useLocation} from 'react-router-dom';
-import { USERNAME } from '../../data/contexts.js';
 
 //component to allow user to create a post
 export default function CreateEventPost() {
-    const {usernameContext} = useContext(USERNAME)
     const [posts, setPosts] = useState([]); //recent posts state
     const postInputRef = useRef() //reference to post input
     const {state} = useLocation()
     const {id, artist} = state
 
-    //run once when first rendered
-    useEffect( () => {  
-        getEventPosts()
-        
-    },[])
-
     //function to send new post to backend
     async function newEventPost() {
         if(postInputRef.current.value) {
-            const data = {id: id, message: postInputRef.current.value}
-            await addTempPost(data)
+            const data = {id: id, post: postInputRef.current.value}
+            
             await postRequest('posts/createEventPost', data)
             postInputRef.current.value = ''
             getEventPosts()
         }
     }
 
-    const addTempPost = async (data) => {
-        console.log('data', data)
-        console.log(usernameContext)
+    //run once when first rendered
+    useEffect( () => {  
+        getEventPosts()
         
-        const profile = await getRequest('profile/profile-pic')
-        const tempPost = {
-            postedBy: usernameContext,
-            message: data.message,
-            profilePicture: profile.profilePicture,
-            likedBy: [],
-        }
-
-        console.log(tempPost)
-        
-
-        setPosts(currentComments => [...currentComments, tempPost])
-    }
-
-    
+        console.log(id)
+    },[])
      //function to get recent posts from server
     async function getEventPosts(){
     
-        const response = await postRequest('posts/eventPosts', {id: id})
-        console.log('response', response)
-        setPosts((currentPosts) => [...response.recentEventPosts])
-       /* const postList = []
+        const serverPosts = await postRequest('posts/eventPosts', {id: id})
+        
+        setPosts(() => [])
+        const postList = []
         serverPosts.forEach(post => {
            postList.push({
                 id: post._id, 
@@ -68,7 +47,7 @@ export default function CreateEventPost() {
             })
         });
 
-        setPosts(() => [...postList])*/
+        setPosts(() => [...postList])
     }
 
     return(

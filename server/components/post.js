@@ -27,12 +27,10 @@ const postSchema=new Schema({
 const Post = model('Posts', postSchema)
 
 function addNewPost(postData) {
-
-    console.log('newPost', postData)
     let myPost = {
         postedBy: postData.username,
         profilePicture: postData.profilePicture,
-        message: postData.message,
+        message: postData.post,
         likes: 0,
         time: Date.now(),
         likedBy: [],
@@ -212,7 +210,7 @@ async function getEventPosts(n=3, eventId) {
             eventPosts.push(post)
         }
     })
-    console.log(eventPosts)
+    
     return eventPosts;
 }
 

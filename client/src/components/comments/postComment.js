@@ -25,7 +25,6 @@ export default function PostComment(props) {
 
     const addTempComment = async (data) => {
         console.log(usernameContext)
-        console.log(usernameContext)
         
         const profile = await getRequest('profile/profile-pic')
         const tempPost = {
