@@ -12,9 +12,13 @@ export default function ProfilePage(){
     const [artists, setArtists] = useState()
     
     useEffect(() => {
-        getProfile()
+       async function awaitProfile() {
+        await getProfile()
+    }
+    
+    awaitProfile();
         
-    },[getProfile])
+    },[])
     
     function mapArrayToList(array, arrayName) {
         console.log('array', array)
@@ -48,11 +52,13 @@ export default function ProfilePage(){
    return(
         <div className=" flex flex-col content-center items-center ">
             <div className="ml-16 w-5/6 bg-gray-400 shadow-black shadow-lg h-screen">
-                <div className="flex flex-col-reverse justify-end gap-5 m-b4">
-                    <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center ">{profile.username}</h1>
-                    <img className="w-[80%] mx-auto object-0" src={`http://localhost:5000/uploads/${profile.profilePicture}`}/>
+                <div className="flex flex-col-reverse justify-end gap-5 py-8 bg-green-500">
+                    <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center text-white">{profile.username}</h1>
+                    <img className="w-40 h-40 contain overflow-hidden mx-auto object-0 rounded-full" src={`http://localhost:5000/images/${profile.profilePicture}`}/>
                 </div>
-                <p className=" w-[100%] button-green mt-4" onClick={()=> {setPasswordModalActive(true)}}>Change Password</p>
+                <div className="flex justify-center">
+                    <p className=" w-[50%] button-green mt-4 py-2" onClick={()=> {setPasswordModalActive(true)}}>Change Password</p>
+                </div>
                 <Modal show={passwordModalActive} close={()=> setPasswordModalActive(false)} content={
                     <div className="flex flex-col mt-4">
                         

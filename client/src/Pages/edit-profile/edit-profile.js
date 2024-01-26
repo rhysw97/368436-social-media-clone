@@ -52,7 +52,7 @@ export default function EditProfile() {
       <div className="flex flex-col  w-[100%] mx-auto" >
         <h1 className="heading">Edit Profile</h1>
         <div className="flex items-center flex-col ml-16">
-            <form  className="w-[60%] flex flex-col items-center" onSubmit={handleSubmit}>
+            <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
                 <input
                 className="input-field"
                 placeholder="Name"
@@ -61,7 +61,7 @@ export default function EditProfile() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 />
-                <div>
+                <div className="w-[50%]">
 
                     <input
                     className="
@@ -83,9 +83,8 @@ export default function EditProfile() {
                     />
                 </div>
                
-                <input
-                className="border-black border-2 h-20 placeholder:translate-y-20
-                "
+                <textarea
+                className="border-black border-2 h-20 placeholder:translate-y-20"
                 placeholder="Bio"
                 name='bio'
                 type="text"
@@ -93,11 +92,13 @@ export default function EditProfile() {
                 onChange={(e) => setBio(e.target.value)}
                 />
 
-                <div>
-                <h2>Add your favourite Genres</h2>
-                <Tags callback={setGenres}></Tags>
-                <h2>Add your favourite Artists</h2>
-                <Tags  callback={setArtists} ></Tags>
+                <div className="text-white">
+                    <div>
+                        <h2 className="text-xl">Add your favourite Genres</h2>
+                        <Tags callback={setGenres}></Tags>
+                    </div>
+                    <h2>Add your favourite Artists</h2>
+                    <Tags  callback={setArtists} ></Tags>
                 {console.log(genres)}
                 </div>
                 <button className="button-green" type="submit" >Submit</button>

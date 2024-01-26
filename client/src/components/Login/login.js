@@ -73,15 +73,15 @@ export default function Login() {
             }}></div>
             <div className="fixed -z-10 min-h-screen w-screen top-0 left-0 bg-black opacity-40" ></div>
 
-            <div className="flex sm:flex-row items-center w-[100%] h-screen flex-col text-white ">
-                <section className="w-[30%] flex flex-col items-center gap-[1.8rem] mt-2">
-                    <p className="gothic text-2xl mb-4">Bringing people together through live music </p>
+            <div className="flex lg:flex-row items-center w-[100%] h-screen flex-col gap-10 lg:gap-0 pt-8 lg:pt-0 lg:justify-evenly text-white ">
+                <section className="lg:h-[100%] flex items-center lg:w-[30%] w-[100%]">
+                    <p className="text-2xl font-semibold lg:align-middle w-[70%] mx-auto md:w-[100%] md:pb-16 lg:w-[80%] lg:pb-0 text-center lg:mx-auto">Bringing people together through live music </p>
                 </section> 
 
-                <form  className="flex flex-col items-center justify-evenly h-100 w-[60%] gap-8 text-black"  onSubmit={handleSubmit}>
+                <form  className="flex flex-col items-center justify-evenly h-100 w-[40%] lg:w-[40%] gap-8 text-black"  onSubmit={handleSubmit}>
                     <h2 className="text-4xl gothic mb-4 text-white">Login</h2>
                     <input
-                        className="input-field"
+                        className="input-field w-[100%] lg:w-[100%]"
                         placeholder="email"
                         id="email"
                         type="text"
@@ -90,7 +90,7 @@ export default function Login() {
                     />
             
                     <input
-                        className="input-field"
+                        className="input-field w-[100%]"
                         placeholder="password"
                         id="password"
                         type="password"

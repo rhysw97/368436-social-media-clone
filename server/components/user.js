@@ -109,13 +109,13 @@ class User {
         console.log(user)
     }
 
+    
     async returnProfilePicture(username) {
         const userData = await this.user.findOne({username: username})
         if(userData) {
             return userData.profilePicture
         }
     }
-
 }
 
 module.exports = {

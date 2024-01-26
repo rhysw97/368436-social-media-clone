@@ -33,11 +33,9 @@ export default function Post(props) {
     return(
         <div className="flex-col px-[20px] bg-slate-300 rounded-md shadow-xl shadow-slate-600 gap-6" >
             <div className="flex mt-1">
-                <div className="rounded-full h-[50px] w-[50px] mt-2 mb-2 mr-2 ml-1">
                     <img className="w-[50px] h-[50px]  bg-black rounded-full" src={`./uploads/${postData.profilePicture}`}/>
-                </div>
-                <div className="flex w-[100%] justify-between">
-                <p className="mx-[6%] pt-1 text-3xl">{postData.username}</p>
+                <div className="flex w-[100%] justify-between flex-col sm:flex-row">
+                    <p className="mx-[6%] pt-1 text-3xl">{postData.username}</p>
                 {posterButtons}
                 </div>
             </div>

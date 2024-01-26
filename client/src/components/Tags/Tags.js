@@ -1,10 +1,11 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
+//function to allow user to add tags to a list
 function Tags(props) {
   const [tags, setTags] = useState([])
-  const inputRef = useRef('')
+  const inputRef = useRef(null)
   
-  
+  //checks whether the user has already added the tag
   const doesTagExist = tag => !tags.includes(tag)?true : false
 
   
@@ -15,7 +16,7 @@ function Tags(props) {
     })
 
     const localTags = tags
-    props.callback(() => localTags)
+    props.callback(tags)
   }
   
   function addTag() {
@@ -25,27 +26,33 @@ function Tags(props) {
       setTags(currentTags => [...currentTags, inputValue])
       inputRef.current.value = ''
       const localTags = tags
+      console.log('tags', tags)
+    
       props.callback(() => localTags)
     }
 
     else {
-      //add Error message
+      alert('Tag already exists')
     }
+
+    console.log()
   }
 
   return (
     <div className="App">
       <ul>
-        {tags.map((tag, i) =>{ return <li key={i}>
+        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-100' >
           <p>{tag}</p>
           <p onClick={()=>{
         
             removeTag(tag)
-          }}>x</p>
+          }} className='hover:text-green-800'>x</p>
         </li>})}
       </ul>
-      <input type="text" ref={inputRef}></input>
-      <p onClick={addTag}>add</p>
+      <div className='flex'>
+        <input className='text-black py-2 pl-2 rounded-l-md' type="text" ref={inputRef}></input>
+        <p className='bg-green-500 p-2 rounded-r-md hover:bg-green-700' onClick={addTag}>add</p>
+      </div>
     </div>
   );
 }
