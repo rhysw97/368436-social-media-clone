@@ -81,7 +81,6 @@ export default function ProfilePage(){
                         <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
                             <h2 className="w-[100%] text-center text-2xl" >Favourite Genres</h2>
                             <ul className="w-[100%] flex flex-wrap gap-5">
-                                <li>Hi</li>
                                 {genres}
                             </ul>
                         </div>
