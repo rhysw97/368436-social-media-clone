@@ -48,7 +48,6 @@ export default function CreatePost() {
     }
 
     const addTempPost = async (data) => {
-        console.log(usernameContext)
         
         const profile = await getRequest('profile/profile-pic')
         const tempPost = {
@@ -58,8 +57,6 @@ export default function CreatePost() {
             likedBy: [],
             comments: []
         }
-
-        console.log(tempPost)
         
         const tempPosts = posts
         tempPosts.unshift(tempPost)

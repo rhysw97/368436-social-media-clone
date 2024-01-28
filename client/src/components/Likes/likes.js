@@ -23,17 +23,14 @@ export default function Likes(props) {
     //likes is length of array
     
     const handleLikes = () => {
-        console.log('username',usernameContext )
         
         if(likedBy.includes(usernameContext)) {
             //remove user from likedBy and remove like
             setLikes(currentLikes => currentLikes - 1)
             postRequest('posts/unLikePost', {postId: props.post.id})
             setLikedBy(() => likedBy.filter(user => user !== usernameContext))
-            console.log(likedBy)
             setLikeMessage('Like')
         } else {
-            console.log("yeah")
             //add user to likedBy and add like
             setLikes(currentLikes => currentLikes + 1)
             postRequest('posts/likePost', {postId: props.post.id})

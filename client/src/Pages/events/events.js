@@ -42,7 +42,6 @@ export default function Events() {
         }
     ])
         data.forEach(event => {
-            console.log(event._id)
             setEvents(currentEvents => [...currentEvents, {
 
                 id: event._id,

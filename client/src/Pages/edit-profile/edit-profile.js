@@ -18,24 +18,19 @@ export default function EditProfile() {
     
     async function getLikedMusic() {
         const response = await getRequest('profile/get-profile')
-        console.log(response)
         setGenres(() => response.genres)
         setArtists(() => response.artists)
         
     }
    
     const handleSubmit = (e) => {
-        console.log('hi', genres)
-        console.log('submitted')
         e.preventDefault();
-        console.log(image)
         const formData = new FormData()
         formData.append('file', image)
         formData.append('name', name)
         formData.append('bio', bio)
         formData.append('genres', genres) 
         formData.append('artists', artists) 
-        console.log(formData)
         
         fetch('/profile/edit', {
             method: 'POST',
@@ -99,7 +94,6 @@ export default function EditProfile() {
                     </div>
                     <h2>Add your favourite Artists</h2>
                     <Tags  callback={setArtists} ></Tags>
-                {console.log(genres)}
                 </div>
                 <button className="button-green" type="submit" >Submit</button>
             </form>

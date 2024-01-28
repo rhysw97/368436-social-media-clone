@@ -11,7 +11,6 @@ export default function LandingPage() {
     const [view, setView] = useState()
 
     useEffect(() => {
-        console.log(loggedInContext)
         if(loggedInContext) {
             setView(() => <ProfilePage></ProfilePage>)
         } 

@@ -46,8 +46,6 @@ export default function Login() {
             setUsernameContext(() => response.username)
             setLoggedInContext(() => true)
 
-            console.log('context', response.username,  usernameContext)
-
             navigate('/post') //navigate to post page (probably should have named this feed)
     
         //if not show element detailing login failure

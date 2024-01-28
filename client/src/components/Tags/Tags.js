@@ -26,7 +26,6 @@ function Tags(props) {
       setTags(currentTags => [...currentTags, inputValue])
       inputRef.current.value = ''
       const localTags = tags
-      console.log('tags', tags)
     
       props.callback(() => localTags)
     }
@@ -34,8 +33,6 @@ function Tags(props) {
     else {
       alert('Tag already exists')
     }
-
-    console.log()
   }
 
   return (

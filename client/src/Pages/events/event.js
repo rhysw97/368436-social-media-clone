@@ -7,7 +7,6 @@ export default function Event(props) {
     const navigate = useNavigate()
      
     const handleClick = () => {
-        console.log(props.event.id)
         navigate('/event-feed', { state: {id: props.event.id, artist: props.event.artist}})
     }
 

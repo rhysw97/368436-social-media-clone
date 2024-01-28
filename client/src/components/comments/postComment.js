@@ -20,11 +20,9 @@ export default function PostComment(props) {
         //requests backends viewComments viw comments with the post and postId
         const response = await postRequest('posts/viewComments', {postId: props.id})
         setComments((currentComments) => [...response.comments]) //sets comments state back to empty array to avoid duplicates 
-        console.log('response', response.comments) 
     }
 
     const addTempComment = async (data) => {
-        console.log(usernameContext)
         
         const profile = await getRequest('profile/profile-pic')
         const tempPost = {
@@ -33,10 +31,7 @@ export default function PostComment(props) {
             postId: data.postId,
             profilePicture: profile.profilePicture
         }
-
-        console.log(tempPost)
         
-
         setComments(currentComments => [...currentComments, tempPost])
     }
 
@@ -45,7 +40,6 @@ export default function PostComment(props) {
         //checks there is data in comment input field
         if(commentInputRef.current.value) {
 
-            //
             const data = {
                 message: commentInputRef.current.value,
                 postId: props.id, //sets postId to the id passed in when this component is initalised witin jsx

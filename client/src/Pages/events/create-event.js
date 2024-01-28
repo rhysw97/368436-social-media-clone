@@ -19,8 +19,6 @@ export default function CreateEvent() {
             time: timeInputRef.current.value
         }
 
-        console.log(data)
-
         postRequest('events', data)
 
         artistInputRef.current.value = null

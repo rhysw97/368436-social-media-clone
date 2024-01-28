@@ -4,7 +4,6 @@ export default function NavbarIcon({icon, text='tooltip', path='/', callback}) {
     const navigate = useNavigate()
 
     const navigateToPage = () => {
-        console.log('to the profile page')
         callback()
         navigate(path)
     }

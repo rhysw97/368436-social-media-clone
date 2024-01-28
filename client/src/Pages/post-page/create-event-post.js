@@ -24,7 +24,6 @@ export default function CreateEventPost() {
     }
 
     const addTempPost = async (data) => {
-        console.log(usernameContext)
         
         const profile = await getRequest('profile/profile-pic')
         const tempPost = {
@@ -34,8 +33,6 @@ export default function CreateEventPost() {
             likedBy: [],
             comments: []
         }
-
-        console.log(tempPost)
         
         const tempPosts = posts
         tempPosts.unshift(tempPost)
@@ -45,8 +42,6 @@ export default function CreateEventPost() {
     //run once when first rendered
     useEffect( () => {  
         getEventPosts()
-        
-        console.log(id)
     },[])
      //function to get recent posts from server
     async function getEventPosts(){
