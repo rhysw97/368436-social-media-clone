@@ -14,6 +14,7 @@ class User {
             profilePicture: String, 
             about: String,
             genres: Array, 
+            artists: Array,
             interestedGigs: Array, 
             postHistory: Array,
             friendslist: Array

@@ -13,11 +13,9 @@ export default function ProfilePage(){
     
     //runs once on load and gets profile to update with the users data
     useEffect(() => {
-       async function awaitProfile() {
-        await getProfile()
-    }
+        getProfile()
     
-    awaitProfile();
+        //awaitProfile();
         
     },[])
     

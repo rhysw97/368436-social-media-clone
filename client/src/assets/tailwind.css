@@ -35,6 +35,8 @@
                pt-1 pb-1 
                w-28 text-center
                hover:bg-green-800
+               shadow-md
+               hover:shadow-inner
     }
 
     .heading {

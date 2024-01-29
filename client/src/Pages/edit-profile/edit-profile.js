@@ -1,5 +1,6 @@
 import { getRequest} from "../../utils/server-queries.ts";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import Tags from '../../components/Tags/Tags.js'
 
 export default function EditProfile() {
@@ -7,22 +8,24 @@ export default function EditProfile() {
     const [name, setName] = useState("");
     const [image, setImage] = useState();
     const [bio, setBio] = useState("");
-    const [genres, setGenres] = useState([]);
-    const [artists, setArtists] = useState([]);
-    
-
+    const [genres, setGenres] = useState(null);
+    const [artists, setArtists] = useState(null);
+    let artistList = []
+    const navigate = useNavigate()
 
     useEffect(() => {
         getLikedMusic()
-    },[])
-    
-    async function getLikedMusic() {
-        const response = await getRequest('profile/get-profile')
-        setGenres(() => response.genres)
-        setArtists(() => response.artists)
         
+    },[])
+
+    async function getLikedMusic() {
+            const response = await getRequest('profile/get-profile')
+            console.log(response)
+            setGenres(() => response.genres)
+            setArtists(() => response.artists) 
     }
    
+    //handles submitting the form and sends data to backend then navigates to the users profile page so they can see the update
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData()
@@ -36,6 +39,8 @@ export default function EditProfile() {
             method: 'POST',
             body: formData,
         });
+
+        navigate('/profile')
     };
 
     const handleChange = (e) => {
@@ -57,7 +62,7 @@ export default function EditProfile() {
                 required
                 />
                 <div className="w-[50%]">
-
+               
                     <input
                     className="
                         block w-full text-sm 
@@ -90,10 +95,13 @@ export default function EditProfile() {
                 <div className="text-white">
                     <div>
                         <h2 className="text-xl">Add your favourite Genres</h2>
-                        <Tags callback={setGenres}></Tags>
+                        {genres && <Tags callback={setGenres} taglist={genres}></Tags>}
+                        
                     </div>
-                    <h2>Add your favourite Artists</h2>
-                    <Tags  callback={setArtists} ></Tags>
+                    <div>
+                        <h2>Add your favourite Artists</h2>
+                        {artists && <Tags  callback={setArtists} taglist={artists}></Tags>}
+                    </div>
                 </div>
                 <button className="button-green" type="submit" >Submit</button>
             </form>

@@ -5,6 +5,18 @@ function Tags(props) {
   const [tags, setTags] = useState([])
   const inputRef = useRef(null)
   
+  useEffect(()=> {
+    console.log(props.taglist)
+    async function addCurrentTags() {
+      await setTags(() => {
+        const updatedTags = props.taglist
+        return updatedTags
+      })
+    }
+
+    addCurrentTags()
+  },[])
+
   //checks whether the user has already added the tag
   const doesTagExist = tag => !tags.includes(tag)?true : false
 
@@ -15,8 +27,8 @@ function Tags(props) {
       return currentValues.filter(tagToCheck => tagToCheck !== tag)
     })
 
-    const localTags = tags
-    props.callback(tags)
+   
+    props.callback(() => tags)
   }
   
   function addTag() {
@@ -25,9 +37,9 @@ function Tags(props) {
     if(doesTagExist(inputValue)) {
       setTags(currentTags => [...currentTags, inputValue])
       inputRef.current.value = ''
-      const localTags = tags
+      
     
-      props.callback(() => localTags)
+      props.callback(() => tags)
     }
 
     else {

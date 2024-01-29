@@ -39,7 +39,8 @@ export default function Login() {
         //send login data to serve and wait to see whether the server logs the user in
         const response = await postRequest('login', { email, password });
         //if yes
-        if(response) {
+        console.log(response.loggedin)
+        if(response.loggedin === true) {
             //don't need login message element showing login failed
             setLoginMessage(null)
             //set username context (react global variable) to the to responses username attribute
@@ -50,7 +51,7 @@ export default function Login() {
     
         //if not show element detailing login failure
         } else {
-            setLoginMessage(() => <p>Email or password could not be verfied. Please check they have been inputted correctly or click below to create an account</p>)
+            setLoginMessage(() => <p className="text-white">Email or password could not be verfied.<br/> Please check they have are correct or click below to create an account</p>)
         }
     }
 
@@ -95,10 +96,11 @@ export default function Login() {
                         value={password}
                         onChange={handlePassword}
                     />
+                    {loginMessage}
                     <button type="submit" className="button-green">Submit</button>
                     <p className="gothic text-center text-white">Not Registered? </p>
                     <a className="gothic button-green px-2 py-1" onClick={()=> {navigate('/register')}}>Sign Up</a>
-                    {loginMessage}
+                    
                 </form>
 
                 
