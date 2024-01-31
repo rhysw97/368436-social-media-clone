@@ -1,5 +1,4 @@
 import React from 'react'
-import './Modal.css'
 
 export default function Modal(props) {
 
@@ -9,6 +8,7 @@ export default function Modal(props) {
 
     return (
         <div className='fixed top-0 left-0 h-screen w-screen bg-gray-700 flex items-center justify-center z-50' onClick={props.close}>
+            <p className='text-white fixed left-3 top-0 text-3xl hover:text-green-500'> x </p>
             <div className=' bg-gray-400 h-screen w-[80%] ' onClick= {event => event.stopPropagation()}>
                 <div className='modal-header'>
                     <h1 className='text-center font-extrabold text-green-500 text-5xl'>{props.title}</h1>

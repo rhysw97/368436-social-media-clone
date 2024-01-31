@@ -12,13 +12,21 @@ export default function Post(props) {
     const [editModalActive, setEditModalActive] = useState(false);
     const [deleteModalActive, setDeleteModalActive] = useState(false);
     const {usernameContext, setUsernameContext} = useContext(USERNAME)
+    console.log(props.post.message)
+    const [message, setMessage] = useState(props.post.message)
+    console.log(message)
     const postData = props.post
     let posterButtons = null;
     const username = usernameContext
   
     useEffect(() => {
+        console.log(props.post.message)
         console.log(postData)
     }, [])
+
+    function updateMessage(msg) {
+        setMessage(msg)
+    }
 
     if(postData.username === username) {
         posterButtons =
@@ -40,7 +48,7 @@ export default function Post(props) {
                 </div>
             </div>
             <div className="my-[10px] min-h-[100px] flex align-middle">
-                <p className="mx-[9.5%] my-auto text-xl">{postData.message}</p>
+                <p className="mx-[9.5%] my-auto text-xl">{message}</p>
             </div>
             
             <div className="flex flex-col gap-6">
@@ -49,8 +57,8 @@ export default function Post(props) {
                     <p className=" w-[100%] button-green mb-5" onClick={()=> {setCommentsModalActive(true)}}>comments</p>
                 </div>
                 <Modal show={commentsModalActive} close={()=> setCommentsModalActive(false)} content={<PostComment id={postData.id}/>} title={"Comments"}/>
-                <Modal show={deleteModalActive} close={()=> setDeleteModalActive(false)} content={<DeletePost id={postData.id}/>} title={"Delete"}/> 
-                <Modal show={editModalActive} close={()=> setEditModalActive(false)} content={<EditPost id={postData.id} message={postData.message}/>} title={"Edit"}/>  
+                <Modal show={deleteModalActive} close={()=> setDeleteModalActive(false)} content={<DeletePost id={postData.id} setModalActive={setDeleteModalActive} />} title={"Delete"}/> 
+                <Modal show={editModalActive} close={()=> setEditModalActive(false)} content={<EditPost id={postData.id} message={message} setMessage={updateMessage} setModalActive={setEditModalActive}/>} title={"Edit"}/>  
             </div>
         </div>
     )

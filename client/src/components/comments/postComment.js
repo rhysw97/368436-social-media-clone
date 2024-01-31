@@ -22,17 +22,20 @@ export default function PostComment(props) {
         setComments((currentComments) => [...response.comments]) //sets comments state back to empty array to avoid duplicates 
     }
 
+    //function to add temporary comment after user submits comment so it shows up without the user having to refresh
     const addTempComment = async (data) => {
-        
+        //makes get request to profile/profile-pic endpoint and waits for the response
         const profile = await getRequest('profile/profile-pic')
-        const tempPost = {
+        //creates temporary comment object containing the comment data to show to the user
+        const tempComment = { 
             user: usernameContext,
             message: data.message,
             postId: data.postId,
             profilePicture: profile.profilePicture
         }
         
-        setComments(currentComments => [...currentComments, tempPost])
+        //sets the comments state to include the current comments in the comments state array and the new tempComment object 
+        setComments(currentComments => [...currentComments, tempComment])
     }
 
     //function to run when user comments on post
@@ -44,7 +47,7 @@ export default function PostComment(props) {
                 message: commentInputRef.current.value,
                 postId: props.id, //sets postId to the id passed in when this component is initalised witin jsx
             }
-
+            //calls function to add temporary comment while passing in the data
             addTempComment(data)
             
             await postRequest('posts/comment', data)
@@ -55,7 +58,8 @@ export default function PostComment(props) {
         }
     }
 
-   //if comments has a 
+   //returns what will be rendered by this component
+   //maps reversed comment array so latest post will be at top 
     return (
         <div className="h-screen">
             <div className="comments flex flex-col gap-10">
