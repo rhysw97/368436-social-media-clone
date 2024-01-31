@@ -57,7 +57,7 @@ export default function Post(props) {
                     <p className=" w-[100%] button-green mb-5" onClick={()=> {setCommentsModalActive(true)}}>comments</p>
                 </div>
                 <Modal show={commentsModalActive} close={()=> setCommentsModalActive(false)} content={<PostComment id={postData.id}/>} title={"Comments"}/>
-                <Modal show={deleteModalActive} close={()=> setDeleteModalActive(false)} content={<DeletePost id={postData.id} setModalActive={setDeleteModalActive} />} title={"Delete"}/> 
+                <Modal show={deleteModalActive} close={()=> setDeleteModalActive(false)} content={<DeletePost id={postData.id} setModalActive={setDeleteModalActive} setPostList={props.setPostList} />} title={"Delete"}/> 
                 <Modal show={editModalActive} close={()=> setEditModalActive(false)} content={<EditPost id={postData.id} message={message} setMessage={updateMessage} setModalActive={setEditModalActive}/>} title={"Edit"}/>  
             </div>
         </div>

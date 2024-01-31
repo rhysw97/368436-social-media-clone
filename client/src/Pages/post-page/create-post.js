@@ -72,7 +72,7 @@ export default function CreatePost() {
             </header>
             <div className='ml-16'>
                 <div className=" flex flex-col w-[95%]  mx-auto gap-6  mb-[15%]">
-                    {posts.map((post, index) => <Post key={post.id} post={post} />)}
+                    {posts.map((post, index) => <Post key={post.id} post={post} setPostList={setPosts} />)}
                 </div>
                 <div className ="flex pb-[20px] flex-col items-center mt-10 mx-auto fixed bottom-0 w-[100%] placeholder:text-black bg-green-500">
                     <textarea className="border-black border-2 w-[70%] text-lg rounded-lg px-2 my-3"id="postBox" type="text" placeholder="What is on your mind" ref={postInputRef}/>
