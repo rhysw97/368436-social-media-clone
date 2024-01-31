@@ -26,35 +26,35 @@ export default function Register() {
     const [emailUsed, setEmailUsed] = useState()
     const [validAge, setValidAge] = useState();
     const [emailValid, setEmailValid] = useState();
+
+    //regex to check for valid email. checks there in this format wordsordigits@wordsordigits.co(.uk)
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     const navigate = useNavigate();
   
 
-
+    //gets age from data of birth by checking against current date. Then checks if age is over 18
     function findAge(dob) {
         const currentDate = new Date()
         const birthDate = new Date(dob)
-        let age = currentDate.getFullYear() - birthDate.getFullYear();
-        const month = currentDate.getMonth() - birthDate.getDate();
-     
-        if(month < 0 || (month === 0 && currentDate.getDate() < birthDate.getDate)) {
-            age--
+        let age = currentDate.getFullYear() - birthDate.getFullYear(); //checks users birth year against current year
+        const month = currentDate.getMonth() - birthDate.getDate(); //stores difference between users birth month and current month
+        //if the 
+        //checks if the month is less than zeros or if the month difference is 0 and the current date is greater than the users birth date
+        if(month < 0 || (month === 0 && currentDate.getDate() > birthDate.getDate)) {
+            age-- //if so take 1 from age
         }
         return age;
     }
     
-    const validation = {
-        email: false,
-        dateOfBirth: false,
-        passwordValid: false,
-        passwordsMatch: false
-    }
-
+    //handles email
     const handleEmail = event => {
+        //checks email input is valid against regex and stores result in state
         setEmailValid(currentEmailValid => currentEmailValid = emailRegex.test(event.target.value))
+        //if its valid then stores email in email state
         if(emailValid) {
             setEmail(event.target.value)
             setEmailMessage(null)
+            //if not display error message
         } else {
             setEmailMessage(<p>Not a valid email</p>)
         }
@@ -63,11 +63,11 @@ export default function Register() {
     const handleDateOfBirth = (event) => {
         setDateOfBirth(event.target.value)
         const userAge = findAge(event.target.value);
-
+        //if user is greated or equal to 18 then tore true in validAge state and no error message
         if(userAge >= 18) {
             setValidAge(currentValidAge => currentValidAge = true);
             setAgeMessage(null)
-        } else {
+        } else { //otherwise show user message that they need to be 18 or over
             setValidAge(currentValidAge => currentValidAge = false);
             setAgeMessage(<p>You must be 18 or over to register</p>)
         }
@@ -105,7 +105,6 @@ export default function Register() {
 
         if(!response.username && !response.email) {
             navigate('/edit-profile')
-            setValue(usernameRef.current.value)
         }
     }
 

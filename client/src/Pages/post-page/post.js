@@ -21,7 +21,7 @@ export default function Post(props) {
     }, [])
 
     if(postData.username === username) {
-        posterButtons = 
+        posterButtons =
             <div className="flex mb-6 justify-between gap-2">
                 <p className="button-green" onClick={()=> setEditModalActive(true)}>Edit</p>
                 <p className="button-green mr-4" onClick={()=> setDeleteModalActive(true)}>Delete</p>
