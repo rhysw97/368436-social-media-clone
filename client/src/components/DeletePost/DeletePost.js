@@ -8,6 +8,11 @@ export default function DeletePost(props) {
                 'postId': props.id,
             }
         })
+
+        props.setPostList(currentPosts => {
+            const updatedPosts = currentPosts.filter(post => post.id !== props.id)
+            return updatedPosts
+        })
         props.setModalActive(false)
     }
 
