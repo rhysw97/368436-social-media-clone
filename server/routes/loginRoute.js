@@ -28,7 +28,17 @@ async function waitForLoginDetails(data, response, request) {
 }
 
 router.post('/logout', (request, response) => {
-    request.session = null
+    request.session.destroy()
+    console.log('Yo', request.session)
+})
+
+router.get('/checkLoggedIn', (request, response) => {
+    if(request.session.username) {
+        console.log(request.session)
+        response.send({username: request.session.username})
+    } else {
+        response.send({username: false})
+    }
 })
 
 module.exports = router

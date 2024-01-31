@@ -2,7 +2,7 @@ import CreatePost from './Pages/post-page/create-post';
 import Register from './Pages/register/register';
 import LandingPage from './Pages/landing-page/landing-page';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/UI/navbar/navbar';
 import "./assets/main.css"
 import { USERNAME, LOGGEDIN } from './data/contexts';
@@ -11,9 +11,23 @@ import ProfilePage from './Pages/Profile/profile-page';
 import PrivateRoutes from './utils/PrivateRoutes';
 import Events from './Pages/events/events';
 import CreateEventPost from './Pages/post-page/create-event-post';
+import { getRequest } from './utils/server-queries.ts';
 
 //allow user to post
 function App() {
+
+  useEffect(() => {
+    async function checkUserIsLoggedIn() {
+      const response = await getRequest('login/checkLoggedIn')
+
+      if(response.username) {
+        setUsernameContext(response.username)
+        setLoggedInContext(true)
+      } 
+    }
+
+    checkUserIsLoggedIn()
+  }, [])
   const [usernameContext, setUsernameContext] = useState('')
   const [loggedInContext, setLoggedInContext] = useState(false)
   //routing to allow page like structure to app
