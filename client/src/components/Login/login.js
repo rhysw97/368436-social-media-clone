@@ -3,6 +3,7 @@ import { postRequest } from "../../utils/server-queries.ts";
 import {BrowserRouter, useNavigate} from 'react-router-dom';
 import {USERNAME, LOGGEDIN} from '../../data/contexts.js'
 import image from './../../assets/images/Live-gig.jpg'
+import Navbar from "../UI/navbar/navbar.js";
 
 
 
@@ -60,7 +61,7 @@ export default function Login() {
     return(
         <div style={{
             backgroundImage: './../../assets/images/gig-picture.jpg',
-        }} className="  flex flex-col ml-16 w-[100%] gap-30">
+        }} className="  flex flex-col w-[100%] gap-30">
             <header className=" flex flex-col w-[100%] items-center mx-auto my-0">
                 <h1 className="heading mx-auto my-0">Gig Mates</h1>
             </header>

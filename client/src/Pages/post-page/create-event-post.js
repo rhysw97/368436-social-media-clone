@@ -3,6 +3,7 @@ import Post from './post'
 import {postRequest, getRequest} from '../../utils/server-queries.ts';
 import {useLocation} from 'react-router-dom';
 import { USERNAME } from '../../data/contexts.js';
+import Navbar from '../../components/UI/navbar/navbar.js';
 
 //component to allow user to create a post
 export default function CreateEventPost() {
@@ -68,6 +69,7 @@ export default function CreateEventPost() {
 
     return(
         <div className='gothic' >
+            <Navbar />
             <header className='flex justify-center'>
                 <h1 className='text-5xl heading'>{artist}</h1>
             </header>

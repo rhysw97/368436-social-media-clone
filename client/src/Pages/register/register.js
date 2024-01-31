@@ -112,9 +112,9 @@ export default function Register() {
     return(
        <div>
             <header className='flex justify-center'>
-                <h1 className='text-5xl heading'>Register</h1>
+                <h1 className='text-5xl text-white text-center bg-green-500 w-[100%] py-8 mb-16'>Register</h1>
             </header>
-            <form onSubmit={handleSubmit} className="flex ml-16 w-full gap-4 flex-col items-center">  
+            <form onSubmit={handleSubmit} className="flex w-full gap-4 flex-col items-center">  
             <input
                 placeholder="Username"
                 id="username"

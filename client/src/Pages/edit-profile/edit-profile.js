@@ -2,6 +2,7 @@ import { getRequest} from "../../utils/server-queries.ts";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Tags from '../../components/Tags/Tags.js'
+import Navbar from "../../components/UI/navbar/navbar.js";
 
 export default function EditProfile() {
         //profile inputs
@@ -49,63 +50,66 @@ export default function EditProfile() {
     };
   
     return (
-      <div className="flex flex-col  w-[100%] mx-auto" >
-        <h1 className="heading">Edit Profile</h1>
-        <div className="flex items-center flex-col ml-16">
-            <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
-                <input
-                className="input-field"
-                placeholder="Name"
-                name='name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                />
-                <div className="w-[50%]">
-               
-                    <input
-                    className="
-                        block w-full text-sm 
-                        text-gray-900 border 
-                        border-gray-300 rounded-lg 
-                        cursor-pointer
-                        bg-gray-50 dark:text-gray-400 
-                        focus:outline-none dark:bg-gray-700 
-                        dark:border-gray-600 dark:placeholder-gray-400
-                    "
-                    name='file'
-                    type="file"
-                    id="file_input"
-                    accept="image/*"
-                    onChange={handleChange}
-                    placeholder="Please Upload Profile Image"
-                    required
-                    />
-                </div>
-               
-                <textarea
-                className="border-black border-2 h-20 placeholder:translate-y-20"
-                placeholder="Bio"
-                name='bio'
-                type="text"
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-                />
+        <div>
+            <Navbar />
+            <div className="flex flex-col  w-[100%] mx-auto" >
+                <h1 className="heading">Edit Profile</h1>
+                <div className="flex items-center flex-col ml-16">
+                    <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
+                        <input
+                        className="input-field"
+                        placeholder="Name"
+                        name='name'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        />
+                        <div className="w-[50%]">
+                    
+                            <input
+                            className="
+                                block w-full text-sm 
+                                text-gray-900 border 
+                                border-gray-300 rounded-lg 
+                                cursor-pointer
+                                bg-gray-50 dark:text-gray-400 
+                                focus:outline-none dark:bg-gray-700 
+                                dark:border-gray-600 dark:placeholder-gray-400
+                            "
+                            name='file'
+                            type="file"
+                            id="file_input"
+                            accept="image/*"
+                            onChange={handleChange}
+                            placeholder="Please Upload Profile Image"
+                            required
+                            />
+                        </div>
+                    
+                        <textarea
+                        className="border-black border-2 h-20 placeholder:translate-y-20"
+                        placeholder="Bio"
+                        name='bio'
+                        type="text"
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                        />
 
-                <div className="text-white">
-                    <div>
-                        <h2 className="text-xl">Add your favourite Genres</h2>
-                        {genres && <Tags callback={setGenres} taglist={genres}></Tags>}
-                        
-                    </div>
-                    <div>
-                        <h2>Add your favourite Artists</h2>
-                        {artists && <Tags  callback={setArtists} taglist={artists}></Tags>}
-                    </div>
+                        <div className="text-white">
+                            <div>
+                                <h2 className="text-xl">Add your favourite Genres</h2>
+                                {genres && <Tags callback={setGenres} taglist={genres}></Tags>}
+                                
+                            </div>
+                            <div>
+                                <h2>Add your favourite Artists</h2>
+                                {artists && <Tags  callback={setArtists} taglist={artists}></Tags>}
+                            </div>
+                        </div>
+                        <button className="button-green" type="submit" >Submit</button>
+                    </form>
                 </div>
-                <button className="button-green" type="submit" >Submit</button>
-            </form>
+            </div>
         </div>
-      </div>
     );
 }

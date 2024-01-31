@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getRequest, postRequest } from "../../utils/server-queries.ts"
 import Modal from "../../components/UI/modal/modal.js"
 import Password from "../register/password.js"
+import Navbar from "../../components/UI/navbar/navbar.js"
 
 export default function ProfilePage(){
     const [profile, setProfile] = useState({})
@@ -53,43 +54,46 @@ export default function ProfilePage(){
     } else {
 
         return (
-            <div className=" flex flex-col content-center items-center ">
-                <div className="ml-16 w-5/6 bg-white shadow-black shadow-lg h-screen">
-                    <div className="flex flex-col-reverse justify-end gap-5 py-8 bg-green-500">
-                        <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center text-white">{profile.username}</h1>
-                        <img className="w-40 h-40 contain overflow-hidden mx-auto object-0 rounded-full" src={`http://localhost:5000/images/${profile.profilePicture}`}/>
-                    </div>
-                    <div className="flex justify-center">
-                        <p className=" w-[50%] button-green mt-4 py-2" onClick={()=> {setPasswordModalActive(true)}}>Change Password</p>
-                    </div>
-                    <Modal show={passwordModalActive} close={()=> setPasswordModalActive(false)} content={
-                        <div className="flex flex-col mt-4">
-                            
-                            <Password setPasswordState={setPassword} setIsPasswordValid={setCurrentIsValid}/>
-                            <button onClick={updatePassword} className="button-green w-[60%] mx-auto mt-4" type="submit">Submit</button>
+            <div>
+                <Navbar />
+                <div className=" flex flex-col content-center items-center ">
+                    <div className="ml-16 w-5/6 bg-white shadow-black shadow-lg h-screen">
+                        <div className="flex flex-col-reverse justify-end gap-5 py-8 bg-green-500">
+                            <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center text-white">{profile.username}</h1>
+                            <img className="w-40 h-40 contain overflow-hidden mx-auto object-0 rounded-full" src={`http://localhost:5000/images/${profile.profilePicture}`}/>
                         </div>
+                        <div className="flex justify-center">
+                            <p className=" w-[50%] button-green mt-4 py-2" onClick={()=> {setPasswordModalActive(true)}}>Change Password</p>
+                        </div>
+                        <Modal show={passwordModalActive} close={()=> setPasswordModalActive(false)} content={
+                            <div className="flex flex-col mt-4">
+                                
+                                <Password setPasswordState={setPassword} setIsPasswordValid={setCurrentIsValid}/>
+                                <button onClick={updatePassword} className="button-green w-[60%] mx-auto mt-4" type="submit">Submit</button>
+                            </div>
+                            
+                        } title={"Change Password"}/>
+                        <div className="flex flex-col w-[100%] gap-10 justify-evenly pt-5 items-center">
+                            <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
+                                <h2 className="w-[100%] text-center text-2xl">Bio</h2>
+                            <p>{profile.about}</p>
+                            </div>
                         
-                    } title={"Change Password"}/>
-                    <div className="flex flex-col w-[100%] gap-10 justify-evenly pt-5 items-center">
-                        <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
-                            <h2 className="w-[100%] text-center text-2xl">Bio</h2>
-                        <p>{profile.about}</p>
+                            <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
+                                <h2 className="w-[100%] text-center text-2xl" >Favourite Genres</h2>
+                                <ul className="w-[100%] flex flex-wrap gap-5">
+                                    {genres}
+                                </ul>
+                            </div>
+                            <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
+                                <h2 className="w-[100%] text-center text-2xl">Favourite Artists</h2>
+                                <ul className="w-[100%] flex flex-wrap gap-5">
+                                    {artists}
+                                </ul>
+                            </div>
                         </div>
                     
-                        <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
-                            <h2 className="w-[100%] text-center text-2xl" >Favourite Genres</h2>
-                            <ul className="w-[100%] flex flex-wrap gap-5">
-                                {genres}
-                            </ul>
-                        </div>
-                        <div className="border-[1px] border-black rounded-lg p-4 w-[90%]">
-                            <h2 className="w-[100%] text-center text-2xl">Favourite Artists</h2>
-                            <ul className="w-[100%] flex flex-wrap gap-5">
-                                {artists}
-                            </ul>
-                        </div>
                     </div>
-                
                 </div>
             </div>
         )

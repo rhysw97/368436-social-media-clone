@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react'
 import Post from './post'
 import { postRequest, getRequest } from '../../utils/server-queries.ts';
 import { USERNAME } from '../../data/contexts.js';
+import Navbar from '../../components/UI/navbar/navbar.js';
 
 //component to allow user to create a post
 export default function CreatePost() {
@@ -65,6 +66,7 @@ export default function CreatePost() {
 
     return(
         <div className='gothic' >
+            <Navbar />
             <header className='flex justify-center'>
                 <h1 className='text-5xl heading'>Feed</h1>
             </header>

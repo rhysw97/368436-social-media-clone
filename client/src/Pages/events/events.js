@@ -3,6 +3,7 @@ import   {BlackMassImage, HamishHawkImage, QuelleChrisImage } from "./../../asse
 import CreateEvent from './create-event'   
 import Modal from './../../components/UI/modal/modal';        
 import { getRequest } from "../../utils/server-queries.ts";
+import Navbar from "../../components/UI/navbar/navbar.js";
 import Event from './event.js'
 
 export default function Events() {
@@ -62,6 +63,7 @@ export default function Events() {
 
     return (
         <div className="gothic text-white">
+            <Navbar />
             <header className='flex justify-center'>
                 <h1 className='text-5xl heading'>Events</h1>
             </header>
