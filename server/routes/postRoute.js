@@ -3,6 +3,7 @@ const router = express.Router()
 const {addNewPost, getPosts, likePost, unlikePost, commentOnPost, viewComments, editPost, deletePost, addNewEventPost, getEventPosts} = require('../components/post')
 const { get } = require("mongoose")
 
+
 router.post('/', (request, response) => {
     const data = request.body
 
@@ -10,7 +11,7 @@ router.post('/', (request, response) => {
         username: request.session.username,
         post: data.message
     };
-   createPost(newPost, request.app.locals.user)
+   createPost(newPost, request.app.locals.user, response)
 })
 
 router.get('/recentPosts', (request, response) => {
@@ -23,15 +24,17 @@ router.post('/eventPosts', (request, response) => {
    getRecentEventPosts(5 , request.body.id, response)
 })
 
-router.post('/createEventPost', (request) => {
+router.post('/createEventPost', (request, response) => {
     const data = request.body
 
     const newPost  = {
         username: request.session.username,
-        post: data.post,
+        message: data.message,
         eventId: data.id
     };
-  createEventPost(newPost, request.app.locals.user)
+
+    console.log('NewPost', newPost)
+    createEventPost(newPost, request.app.locals.user, response)
 })
 
 router.post('/likePost', (request, response) => {
@@ -76,22 +79,24 @@ async function getRecentEventPosts(numberOfPosts, eventId, response) {
     response.send(recentEventPosts)
 }
 
-async function createPost(newPost, user) {
+async function createPost(newPost, user, response) {
     
     const profilePicture = await user.returnProfilePicture(newPost.username)
 
     newPost.profilePicture = profilePicture
 
    addNewPost(newPost)
+   response.send({added: true})
 }
 
-async function createEventPost(newPost, user) {
+async function createEventPost(newPost, user, response) {
     
     const profilePicture = await user.returnProfilePicture(newPost.username)
 
     newPost.profilePicture = profilePicture
 
    addNewEventPost(newPost)
+   response.send({added: true})
 }
 
 

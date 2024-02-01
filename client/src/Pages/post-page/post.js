@@ -28,7 +28,7 @@ export default function Post(props) {
         setMessage(msg)
     }
 
-    if(postData.username === username) {
+    if(postData.username === username && postData.id) {
         posterButtons =
             <div className="flex mb-6 justify-between gap-2">
                 <p className="button-green" onClick={()=> setEditModalActive(true)}>Edit</p>

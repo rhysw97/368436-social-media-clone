@@ -18,7 +18,7 @@ export default function CreatePost() {
             await addTempPost(data)
 
             await postRequest('posts', data)
-            
+        
 
             await getRecentPosts()
         }

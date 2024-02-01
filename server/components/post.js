@@ -175,7 +175,7 @@ async function addNewEventPost(postData) {
     let myPost = {
         postedBy: postData.username,
         profilePicture: postData.profilePicture,
-        message: postData.post,
+        message: postData.message,
         likes: 0,
         time: Date.now(),
         likedBy: [],
