@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { postRequest } from "../../utils/server-queries.ts";
+import { getRequest, postRequest } from "../../utils/server-queries.ts";
 import Navbar from "../../components/UI/navbar/navbar.js";
 
-export default function CreateEvent() {
+export default function CreateEvent(props) {
     const artistInputRef = useRef(null)
     const genreInputRef = useRef(null)
     const locationInputRef = useRef(null)
@@ -20,13 +20,23 @@ export default function CreateEvent() {
             time: timeInputRef.current.value
         }
 
-        postRequest('events', data)
-
         artistInputRef.current.value = null
         genreInputRef.current.value = null
         locationInputRef.current.value = null
         dateInputRef.current.value = null
         timeInputRef.current.value = null
+        
+        createEvent(data)
+        
+    }
+
+    const createEvent = async(data) => {
+       await postRequest('events', data)
+       const response = await getRequest('events/getEvents')
+       console.log(response)
+       props.setEventList(response)
+       props.modalActive(false)
+
     }
 
     return(

@@ -15,7 +15,9 @@ router.post('/', (request, response) => {
     };
 
     console.log(newEvent)
-   createEvent(newEvent)
+    createEvent(newEvent)
+    response.send({created: true})
+
 })
 
 router.get('/getEvents', (request, response) => {

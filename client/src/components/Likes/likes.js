@@ -18,24 +18,23 @@ export default function Likes(props) {
             }
         }
     })
-    //if user likes name gets added to array.
-    //if the user clicks when liked 
-    //likes is length of array
     
+    //function to handle if user clicks the licked button
     const handleLikes = () => {
         
+        //checks if user has already liked the parent post
         if(likedBy.includes(usernameContext)) {
             //remove user from likedBy and remove like
             setLikes(currentLikes => currentLikes - 1)
             postRequest('posts/unLikePost', {postId: props.post.id})
             setLikedBy(() => likedBy.filter(user => user !== usernameContext))
-            setLikeMessage('Like')
+            setLikeMessage('Like') //sets the message on screen to like to indicate to user that they can like the post
         } else {
-            //add user to likedBy and add like
+            //add user to likedBy state and add like
             setLikes(currentLikes => currentLikes + 1)
             postRequest('posts/likePost', {postId: props.post.id})
             setLikedBy(currentLikedBy => [...currentLikedBy, usernameContext])
-            setLikeMessage('Unlike')
+            setLikeMessage('Unlike') //sets message on button to unlike to indicate to user clicking the button will unlike the parent post
         }
     }
 

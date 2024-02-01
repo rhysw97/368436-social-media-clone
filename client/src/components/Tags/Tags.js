@@ -20,14 +20,13 @@ function Tags(props) {
   //checks whether the user has already added the tag
   const doesTagExist = tag => !tags.includes(tag)?true : false
 
-  
+  //function to remove a tag if user clicks on the x button
   function removeTag(tag) {
 
     setTags(currentValues => {
-      return currentValues.filter(tagToCheck => tagToCheck !== tag)
+      return currentValues.filter(tagToCheck => tagToCheck !== tag) //returns a new array with all the tags that aren't equal to the one passed into function
     })
-
-   
+    
     props.callback(() => tags)
   }
   
@@ -50,7 +49,7 @@ function Tags(props) {
   return (
     <div className="App">
       <ul>
-        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-100' >
+        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-500' >
           <p>{tag}</p>
           <p onClick={()=>{
         

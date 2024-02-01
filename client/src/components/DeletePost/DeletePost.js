@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function DeletePost(props) {
+
+    //function to run when user clicks yes to delete post
     const handleConfimDelete = async () => {
         fetch('posts/deletePost', {
             method: 'DELETE',
@@ -9,13 +11,15 @@ export default function DeletePost(props) {
             }
         })
 
+        //sets removes post that was deleted from parents post state
         props.setPostList(currentPosts => {
             const updatedPosts = currentPosts.filter(post => post.id !== props.id)
             return updatedPosts
         })
-        props.setModalActive(false)
+        props.setModalActive(false) //closes the delete modal
     }
 
+    //closes the modal if use clicks no indicating they don't want to delete the post
     const handleRejectDelete = () => {
         
         props.setModalActive(false)

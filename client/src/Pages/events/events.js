@@ -77,7 +77,7 @@ export default function Events() {
                 </div>
             </div>
             <div className="bg-green-700 py-4 px-10 rounded-full shadow-lg shadow-slate-700  fixed bottom-4 right-5 hover:shadow-none hover:bottom-3" onClick= { () => setCreateEventModalActive(true)} ><p>Create Event</p></div>
-            <Modal show={createEventModalActive} close={()=> setCreateEventModalActive(false)} content={<CreateEvent />} title={"Create Event"}/>
+            <Modal show={createEventModalActive} close={()=> setCreateEventModalActive(false)} content={<CreateEvent setEventList={setEvents} modalActive={setCreateEventModalActive}/>} title={"Create Event"}/>
         </div>
     );
 }
