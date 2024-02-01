@@ -5,7 +5,7 @@ import Tags from '../../components/Tags/Tags.js'
 import Navbar from "../../components/UI/navbar/navbar.js";
 
 export default function EditProfile() {
-        //profile inputs
+    //profile inputs
     const [name, setName] = useState("");
     const [image, setImage] = useState();
     const [bio, setBio] = useState("");
