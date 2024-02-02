@@ -47,14 +47,14 @@ function Tags(props) {
   }
 
   return (
-    <div className="App">
-      <ul>
-        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-500' >
-          <p>{tag}</p>
+    <div className="w-[100%]">
+      <ul className='flex flex-col gap-2 h-500px overflow-y-scroll bg-white p-2'>
+        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-500 rounded-r-full' >
+          <p className='bg-gray-500 w-[100%] py-2 rounded-r-full'>{tag}</p>
           <p onClick={()=>{
         
             removeTag(tag)
-          }} className='hover:text-green-800'>x</p>
+          }} className='hover:text-green-800 px-4 py-2 bg-green-500 rounded-full h-[90%]'>x</p>
         </li>})}
       </ul>
       <div className='flex'>

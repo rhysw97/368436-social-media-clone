@@ -27,7 +27,7 @@ const postSchema=new Schema({
 
 const Post = model('Posts', postSchema) //creates a model of the schema called posts
 
-//function to add a new post with 1 parameter allowing passing in of post data
+//function to add a new post with 1 parameter allowing passing in of post data //Code edited from daves app
 function addNewPost(postData) {
     //stores data passed into myPost and sets up other fields that may be used 
     let myPost = {
@@ -48,10 +48,10 @@ function addNewPost(postData) {
         })
 }
 
-//function to get posts from with a parameter indicating the amount of posts wanted
+//function to get posts from with a parameter indicating the amount of posts wanted //Code used from Daves app
 async function getPosts(n=3) {
     let data = []
-    await Post.find({})
+    await Post.find({eventId: ''})
         .sort({'time': -1}) //sorts the posts in time added order
         .limit(n)
         .exec()
@@ -64,7 +64,7 @@ async function getPosts(n=3) {
     return data;
 }
 
-//function to get a single post by its id and return the post data
+//function to get a single post by its id and return the post data //code used from Daves app
 async function getPost(postid){
     let data=null;
     await Post.findById(postid)
@@ -203,7 +203,7 @@ async function addNewEventPost(postData) {
 
 }
 
-//gets only posts with eventId field matching event id
+//gets only posts with eventId field matching event id //code used from Daves version
 async function getEventPosts(n=3, eventId) {
     let data = []
     await Post.find({})

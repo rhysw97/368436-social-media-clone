@@ -26,7 +26,7 @@ var postSchema = new Schema({
   }]
 });
 var Post = model('Posts', postSchema); //creates a model of the schema called posts
-//function to add a new post with 1 parameter allowing passing in of post data
+//function to add a new post with 1 parameter allowing passing in of post data //Code edited from daves app
 
 function addNewPost(postData) {
   //stores data passed into myPost and sets up other fields that may be used 
@@ -44,7 +44,7 @@ function addNewPost(postData) {
   Post.create(myPost)["catch"](function (err) {
     console.log("Error: " + err);
   });
-} //function to get posts from with a parameter indicating the amount of posts wanted
+} //function to get posts from with a parameter indicating the amount of posts wanted //Code used from Daves app
 
 
 function getPosts() {
@@ -58,7 +58,9 @@ function getPosts() {
           n = _args.length > 0 && _args[0] !== undefined ? _args[0] : 3;
           data = [];
           _context.next = 4;
-          return regeneratorRuntime.awrap(Post.find({}).sort({
+          return regeneratorRuntime.awrap(Post.find({
+            eventId: ''
+          }).sort({
             'time': -1
           }) //sorts the posts in time added order
           .limit(n).exec().then(function (mongoData) {
@@ -76,7 +78,7 @@ function getPosts() {
       }
     }
   });
-} //function to get a single post by its id and return the post data
+} //function to get a single post by its id and return the post data //code used from Daves app
 
 
 function getPost(postid) {
@@ -354,7 +356,7 @@ function addNewEventPost(postData) {
       }
     }
   });
-} //gets only posts with eventId field matching event id
+} //gets only posts with eventId field matching event id //code used from Daves version
 
 
 function getEventPosts() {

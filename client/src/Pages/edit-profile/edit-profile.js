@@ -71,7 +71,7 @@ export default function EditProfile() {
                 <div className="flex items-center flex-col ml-16">
                     <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
                         <div className="w-[100%] flex flex-col items-center">
-                            {name && <label className="text-white text-xl">Name</label>}
+                            <label className="text-white text-xl">Name</label>
                             <input
                                 className="input-field"
                                 placeholder="Name"
@@ -102,7 +102,7 @@ export default function EditProfile() {
                             />
                         </div>
                         <div className="flex flex-col w-[50%] items-center ">
-                            {bio && <label className="text-white text-xl">Bio</label>}
+                            <label className="text-white text-xl">Bio</label>
                             <textarea
                             className="border-black border-2 h-20 placeholder:translate-y-20 w-full"
                             placeholder="Bio"

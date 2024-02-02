@@ -9,8 +9,8 @@ router.post('/', (request, response) => {
 //function to create a user
 async function createUser(response, request, data) {
     const currentUser = request.app.locals.user //stores user instance in current user
-    const checks = await currentUser.addNewUser(data) //calls User's add new users method to add user data into db
-    if(checks) {
+    const isInDatabase = await currentUser.addNewUser(data) //calls User's add new users method to add user data into db
+    if(!isInDatabase.email && !isInDatabase.username) {
         request.session.username = data.username
     }
     response.send(JSON.stringify(checks))

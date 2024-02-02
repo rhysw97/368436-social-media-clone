@@ -28,7 +28,7 @@ export default function Register() {
     const [emailValid, setEmailValid] = useState();
 
     //regex to check for valid email. checks there in this format wordsordigits@wordsordigits.co(.uk)
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$/
     const navigate = useNavigate();
   
 
@@ -40,7 +40,7 @@ export default function Register() {
         const month = currentDate.getMonth() - birthDate.getDate(); //stores difference between users birth month and current month
         //if the 
         //checks if the month is less than zeros or if the month difference is 0 and the current date is greater than the users birth date
-        if(month < 0 || (month === 0 && currentDate.getDate() > birthDate.getDate)) {
+        if(month < 0 || (month === 0 && currentDate.getDate() >= birthDate.getDate)) {
             age-- //if so take 1 from age
         }
         return age;
@@ -56,7 +56,7 @@ export default function Register() {
             setEmailMessage(null)
             //if not display error message
         } else {
-            setEmailMessage(<p>Not a valid email</p>)
+            setEmailMessage(<p className="text-white">Not a valid email</p>)
         }
     }
 
@@ -69,7 +69,7 @@ export default function Register() {
             setAgeMessage(null)
         } else { //otherwise show user message that they need to be 18 or over
             setValidAge(currentValidAge => currentValidAge = false);
-            setAgeMessage(<p>You must be 18 or over to register</p>)
+            setAgeMessage(<p className="text-white">You must be 18 or over to register</p>)
         }
     }
 
@@ -92,13 +92,13 @@ export default function Register() {
         const response = await postRequest('register', data)
         
         if(response.email) {
-            setEmailUsed(<p>Email already in use</p>) 
+            setEmailUsed(<p className="text-white">Email already in use</p>) 
         } else {
             setEmailUsed(null) 
         }
 
         if(response.username) {
-            setUsernameUsed(<p>Username already in use</p>) 
+            setUsernameUsed(<p className="text-white">Username already in use</p>) 
         }  else {
             setUsernameUsed(null) 
         }
@@ -134,7 +134,7 @@ export default function Register() {
             {emailMessage}
               
             <div className="flex flex-col items-center w-[100%]">
-                <label for="dob" className="text-center">Date Of Birth</label>
+                <label for="dob" className="text-center text-white">Date Of Birth</label>
                 <input
                     id="dob"
                     type="date"
