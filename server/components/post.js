@@ -32,7 +32,6 @@ function addNewPost(postData) {
     //stores data passed into myPost and sets up other fields that may be used 
     let myPost = {
         postedBy: postData.username,
-        profilePicture: postData.profilePicture,
         message: postData.post,
         likes: 0,
         time: Date.now(),
@@ -107,13 +106,11 @@ async function unlikePost(likedPostID, likedByUser){
 //function for user to comment on a post by finding the post by it's id and adding the comment to it's comment array
 async function commentOnPost(commentedPostID, commentByUser, comment, request){
     let found;
-    const pic = await request.app.locals.user.returnProfilePicture(commentByUser) //gets the users profile picture
     let newComment={
         user: commentByUser,
         message: comment,
         likes: 0,
         time: Date.now(),
-        profilePicture: pic,
     }
     //updates post in database with new comment
     await Post.findByIdAndUpdate(commentedPostID,{$push: {comments: newComment}}).exec()
@@ -190,7 +187,6 @@ async function addNewEventPost(postData) {
 
     let myPost = {
         postedBy: postData.username,
-        profilePicture: postData.profilePicture,
         message: postData.message,
         likes: 0,
         time: Date.now(),

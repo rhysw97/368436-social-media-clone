@@ -16,7 +16,7 @@ export default function CreatePost() {
             const data = {message: postInputRef.current.value}
             postInputRef.current.value = ''
             await addTempPost(data)
-
+            console.log(data)
             await postRequest('posts', data)
         
 
@@ -32,10 +32,10 @@ export default function CreatePost() {
      //function to get recent posts from server
     async function getRecentPosts(){
         const serverPosts = await getRequest('posts/recentPosts', localStorage.getItem('access_token'))
-      
+        console.log(serverPosts)
         setPosts([])
-        serverPosts.forEach(post => {
-            setPosts(currentPosts => [...currentPosts, {
+        setPosts(serverPosts.map(post =>  {
+            return  {
                 id:post._id, 
                 username: post.postedBy, 
                 message: post.message,
@@ -44,13 +44,14 @@ export default function CreatePost() {
                 comments: post.comments,
                 date: post.date,
                 profilePicture: post.profilePicture
-            }])
-        });
+            }
+        }));
     }
 
     const addTempPost = async (data) => {
         
         const profile = await getRequest('profile/profile-pic')
+        console.log(profile)
         const tempPost = {
             username: usernameContext,
             message: data.message,

@@ -9,7 +9,7 @@ router.post('/', (request, response) => {
 
 //waits for login details and checks they have been accepted. Sends True or false back to user
 async function waitForLoginDetails(data, response, request) {
-    console.log('login data', data)
+    //
     const currentUser = request.app.locals.user 
     const loginData = await currentUser.checkLoginDetails(data);
     console.log(loginData)

@@ -38,7 +38,7 @@ function Tags(props) {
       inputRef.current.value = ''
       
     
-      props.callback(() => tags)
+      props.callback(currentTags => [...currentTags, inputValue])
     }
 
     else {

@@ -10,6 +10,7 @@ class User {
             id: String,
             email: String,
             username: String,
+            name: String,
             dateOfBirth: String,
             age: Number,
             password: String, 
@@ -31,8 +32,9 @@ class User {
             username: userData.username,
             dateOfBirth: userData.dateOfBirth,
             age: userData.age,
-            password: userData.password, 
-            profilePicture: '', 
+            password: userData.password,
+            name: '', 
+            profilePicture: 'default.png', 
             about: '',
             genres: [], 
             interestedGigs: [], 
@@ -91,19 +93,33 @@ class User {
 
     //function to find user by username and update the users info in database with the new data passed in
     async updateProfile(data) {
-        const userData = await this.user.findOneAndUpdate({username: data.username}, {$set:{
-            profilePicture: data.profilePicture,
-            about: data.about,
-            genres: data.genres,
-            interestedGigs: data.interestedGigs,
-            artists: data.artists 
-        }}, {new: true})
+        if(data.profilePicture) {
+            const userData = await this.user.findOneAndUpdate({username: data.username}, {$set:{
+                name: data.name,
+                profilePicture: data.profilePicture,
+                about: data.about,
+                genres: data.genres,
+                interestedGigs: data.interestedGigs,
+                artists: data.artists 
+            }}, {new: true})
+        } else {
+            const userData = await this.user.findOneAndUpdate({username: data.username}, {$set:{
+                name: data.name,
+                about: data.about,
+                genres: data.genres,
+                interestedGigs: data.interestedGigs,
+                artists: data.artists 
+            }}, {new: true})
+        }
     }
 
     //function to get a users profile data by finding them in databse by username
     async getProfileData(username, response) {
         const userData = await this.user.findOne({username: username})
         if(userData) {
+            if(!userData.profilePicture) {
+                userData.profilePicture = 'default.png'
+            }
             response.send(userData)
         }
     }
@@ -111,9 +127,11 @@ class User {
     //function to get a users profile picture from database by finding them by username and send it back to client
     async getProfilePicture(username, response) {
         const userData = await this.user.findOne({username: username})
-      
+        console.log(userData)
         if(userData) {
             response.send({picture: userData.profilePicture})
+        } else {
+            response.send({picture: 'default.png'})
         }
     }
 
@@ -127,6 +145,8 @@ class User {
         const userData = await this.user.findOne({username: username})
         if(userData) {
             return userData.profilePicture
+        } else {
+            return 'default.png'
         }
     }
 }

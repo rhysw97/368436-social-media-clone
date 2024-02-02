@@ -7,9 +7,10 @@ import { useContext } from "react"
 import { postRequest } from "../../../utils/server-queries.ts"
 
 export default function Navbar() {
-    const {loggedInContext, setLoggedInContext} = useContext(LOGGEDIN)
+    const {loggedInContext, setLoggedInContext} = useContext(LOGGEDIN) //sets loggedInContext to LOGGEDIN
     const {usernameContext, setUsernameContext } = useContext(USERNAME)
 
+    //function to handle logout which is passed into NavbarIconFunction component as a prop
     function handleLogoutResponse() {
         postRequest('login/logout', {});
         setLoggedInContext(() => false)

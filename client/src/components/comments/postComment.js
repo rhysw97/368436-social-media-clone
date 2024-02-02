@@ -26,6 +26,7 @@ export default function PostComment(props) {
     const addTempComment = async (data) => {
         //makes get request to profile/profile-pic endpoint and waits for the response
         const profile = await getRequest('profile/profile-pic')
+        console.log(profile)
         //creates temporary comment object containing the comment data to show to the user
         const tempComment = { 
             user: usernameContext,
@@ -66,7 +67,7 @@ export default function PostComment(props) {
                 {comments.toReversed().map((comment, index) => {
                     return <div className="bg-white w-[90%] m-auto rounded-xl p-10" key={index}>
                         <div className="flex items-center">
-                            <img className="w-20 h-20" />
+                            <img className="w-20 h-20" src={`http://localhost:5000/images/${comment.profilePicture}`}/>
                             <h2>{comment.user}</h2>
                         </div>
                             <p>{comment.message}</p>

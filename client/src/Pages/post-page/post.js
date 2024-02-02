@@ -19,11 +19,6 @@ export default function Post(props) {
     let posterButtons = null;
     const username = usernameContext
   
-    useEffect(() => {
-        console.log(props.post.message)
-        console.log(postData)
-    }, [])
-
     function updateMessage(msg) {
         setMessage(msg)
     }
@@ -41,7 +36,7 @@ export default function Post(props) {
     return(
         <div className="flex-col px-[20px] bg-slate-300 rounded-md shadow-xl shadow-slate-600 gap-6" >
             <div className="flex mt-1">
-                    <img className="w-[50px] h-[50px]  bg-black rounded-full" src={`./uploads/${postData.profilePicture}`}/>
+                    <img className="w-[50px] h-[50px]  bg-black rounded-full" src={`http://localhost:5000/images/${postData.profilePicture}`}/>
                 <div className="flex w-[100%] justify-between flex-col sm:flex-row">
                     <p className="mx-[6%] pt-1 text-3xl">{postData.username}</p>
                 {posterButtons}

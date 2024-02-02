@@ -1,7 +1,8 @@
 import React from 'react'
 
 export default function Modal(props) {
-    //checks if the show props passed in is falsy if it is then this component wont render anything otherwise it will render the modal with component passed in
+    //checks if the show props passed in is falsy if it is then this component wont render anything 
+    //otherwise it will render the modal with component passed in
     if (!props.show) {
         return null
     }

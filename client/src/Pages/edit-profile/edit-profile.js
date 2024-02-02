@@ -15,31 +15,45 @@ export default function EditProfile() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        getLikedMusic()
+        getProfileData()
         
     },[])
 
-    async function getLikedMusic() {
+    async function getProfileData() {
             const response = await getRequest('profile/get-profile')
             console.log(response)
             setGenres(() => response.genres)
-            setArtists(() => response.artists) 
+            setArtists(() => response.artists)
+            setName(() => response.name)
+            setBio(() => response.about) 
     }
    
     //handles submitting the form and sends data to backend then navigates to the users profile page so they can see the update
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData()
-        formData.append('file', image)
+       
         formData.append('name', name)
         formData.append('bio', bio)
         formData.append('genres', genres) 
         formData.append('artists', artists) 
         
-        fetch('/profile/edit', {
-            method: 'POST',
-            body: formData,
-        });
+        //if image exists then append image to formData
+        if(image) {
+            formData.append('file', image)
+            //post data to editWithFile endpoint
+            fetch('/profile/editWithFile', {
+                method: 'POST',
+                body: formData
+            })
+        //otherwise post data to edit endpoint
+        } else {
+            console.log(formData)
+            fetch('/profile/edit', {
+                method: 'POST',
+                body: formData,
+            });
+        }
 
         navigate('/profile')
     };
@@ -56,44 +70,48 @@ export default function EditProfile() {
                 <h1 className="heading">Edit Profile</h1>
                 <div className="flex items-center flex-col ml-16">
                     <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
-                        <input
-                        className="input-field"
-                        placeholder="Name"
-                        name='name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        />
+                        <div className="w-[100%] flex flex-col items-center">
+                            {name && <label className="text-white text-xl">Name</label>}
+                            <input
+                                className="input-field"
+                                placeholder="Name"
+                                name='name'
+                                defaultValue={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
                         <div className="w-[50%]">
                     
                             <input
-                            className="
-                                block w-full text-sm 
-                                text-gray-900 border 
-                                border-gray-300 rounded-lg 
-                                cursor-pointer
-                                bg-gray-50 dark:text-gray-400 
-                                focus:outline-none dark:bg-gray-700 
-                                dark:border-gray-600 dark:placeholder-gray-400
-                            "
-                            name='file'
-                            type="file"
-                            id="file_input"
-                            accept="image/*"
-                            onChange={handleChange}
-                            placeholder="Please Upload Profile Image"
-                            required
+                                className="
+                                    block w-full text-sm 
+                                    text-gray-900 border 
+                                    border-gray-300 rounded-lg 
+                                    cursor-pointer
+                                    bg-gray-50 dark:text-gray-400 
+                                    focus:outline-none dark:bg-gray-700 
+                                    dark:border-gray-600 dark:placeholder-gray-400
+                                "
+                                name='file'
+                                type="file"
+                                id="file_input"
+                                accept="image/*"
+                                onChange={handleChange}
+                                placeholder="Upload new profile picture"
                             />
                         </div>
-                    
-                        <textarea
-                        className="border-black border-2 h-20 placeholder:translate-y-20"
-                        placeholder="Bio"
-                        name='bio'
-                        type="text"
-                        value={bio}
-                        onChange={(e) => setBio(e.target.value)}
-                        />
+                        <div className="flex flex-col w-[50%] items-center ">
+                            {bio && <label className="text-white text-xl">Bio</label>}
+                            <textarea
+                            className="border-black border-2 h-20 placeholder:translate-y-20 w-full"
+                            placeholder="Bio"
+                            name='bio'
+                            type="text"
+                            defaultValue={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                            />
+                        </div>
 
                         <div className="text-white">
                             <div>

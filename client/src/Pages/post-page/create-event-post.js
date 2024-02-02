@@ -49,22 +49,18 @@ export default function CreateEventPost() {
     
         const serverPosts = await postRequest('posts/eventPosts', {id: id})
         
-        setPosts(() => [])
-        const postList = []
-        serverPosts.forEach(post => {
-           postList.push({
-                id: post._id, 
+        setPosts(serverPosts.map(post =>  {
+            return  {
+                id:post._id, 
                 username: post.postedBy, 
                 message: post.message,
                 likes: post.likes, 
                 likedBy: post.likedBy, 
                 comments: post.comments,
                 date: post.date,
-                eventId: id
-            })
-        });
-
-        setPosts(() => [...postList])
+                profilePicture: post.profilePicture
+            }
+        }));
     }
 
     return(

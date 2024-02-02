@@ -31,6 +31,7 @@ app.use(cors({
 
 app.use(express.json());
 
+//sets up new store for sessions so I can store them in MongoDB Database
 const store = new MongoDBStore({
   uri: dbUri,
   collection: 'Sessions'
@@ -41,7 +42,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: false,
-  store: store,
+  store: store, //specifies store that I want to store sessions in
   cookie: {
     httpOnly: true,
     maxAge: parseInt(process.env.SESSION_MAX_AGE),
