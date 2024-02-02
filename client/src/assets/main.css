@@ -36,8 +36,7 @@
                w-28 text-center
                hover:bg-green-800
                shadow-md
-               shadow-black
-               hover:shadow-none
+               hover:shadow-inner
     }
 
     .heading {
@@ -70,6 +69,5 @@
    }
     
 }
-
-
+
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhaWx3aW5kLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJtYWluLmNzcyJ9 */

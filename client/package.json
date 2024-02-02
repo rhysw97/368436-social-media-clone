@@ -40,6 +40,8 @@
   },
   "proxy": "http://127.0.0.1:5000/",
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
     "@typescript-eslint/parser": "^5.55.0",
     "autoprefixer": "^9.8.8",
     "gh-pages": "^6.1.1",
