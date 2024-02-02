@@ -31,7 +31,7 @@ export default function CreatePost() {
     },[])
      //function to get recent posts from server
     async function getRecentPosts(){
-        const serverPosts = await getRequest('posts/recentPosts', localStorage.getItem('access_token'))
+        const serverPosts = await getRequest('posts/recentPosts')
         console.log(serverPosts)
         setPosts([])
         setPosts(serverPosts.map(post =>  {

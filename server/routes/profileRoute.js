@@ -74,4 +74,8 @@ router.get('/profile-pic', async (request, response) => {
   await request.app.locals.user.getProfilePicture(request.session.username, response) 
 }), 
 
+router.post('/user-pic', async(request, response) => {
+  await request.app.locals.user.getProfilePicture(request.body.username, response) 
+})
+
 module.exports = router

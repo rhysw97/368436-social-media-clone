@@ -102,4 +102,19 @@ router.get('/profile-pic', function _callee(request, response) {
       }
     }
   });
-}), module.exports = router;
+}), router.post('/user-pic', function _callee2(request, response) {
+  return regeneratorRuntime.async(function _callee2$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.next = 2;
+          return regeneratorRuntime.awrap(request.app.locals.user.getProfilePicture(request.body.username, response));
+
+        case 2:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  });
+});
+module.exports = router;

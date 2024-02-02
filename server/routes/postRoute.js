@@ -86,7 +86,6 @@ async function getRecentPosts(numberOfPosts, response, user) {
     let recentPosts = await getPosts(numberOfPosts)
 
     recentPosts = await getCurrentProfilePictures(recentPosts, 'postedBy', user)
-
     response.send(recentPosts)
 }
 
@@ -111,6 +110,5 @@ async function getCurrentProfilePictures(arrayToChange, fieldName, user) {
     console.log('ToChange', arrayToChange)
     return arrayToChange
 }
-
 
 module.exports = router
