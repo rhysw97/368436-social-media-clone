@@ -59,7 +59,7 @@ export default function ProfilePage(){
                 <div className=" flex flex-col content-center items-center ">
                     <div className="ml-16 w-5/6 min-h-screen bg-white shadow-black shadow-lg pb-5 ">
                         <div className="flex flex-col justify-end gap-5 py-8 bg-green-500">
-                            <img className="w-40 h-40 contain overflow-hidden mx-auto object-0 rounded-full" src={`http://localhost:5000/images/${profile.profilePicture}`}/>
+                            <img className="w-40 h-40 contain overflow-hidden mx-auto object-0 rounded-full" src={`https://gig-matesd.onrender.com/images/${profile.profilePicture}`}/>
                             <h1 className="w-[100%] text-6xl font-bold didact-gotic text-center text-white">{profile.username}</h1>
                             {profile.name && <h2 className="w-[100%] text-3xl font-bold didact-gotic text-center text-white">{`(${profile.name})`}</h2>}
                         </div>

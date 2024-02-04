@@ -26,7 +26,7 @@ export default function LikedBy(props) {
             {likedBy.map((user, index) => {
                 return (
                     <div key={index} className="flex flex-col sm:flex-row items-center bg-green-500 gap-5 px-5 py-4 w-[90%] rounded-2xl">
-                        <img className="w-[100px] h-[100px] bg-black rounded-full" src={`http://localhost:5000/images/${user.profilePicture}`}/>
+                        <img className="w-[100px] h-[100px] bg-black rounded-full" src={`https://gig-matesd.onrender.com/images/${user.profilePicture}`}/>
                         <p className="text-3xl">{user.username}</p>
                        
                     </div>

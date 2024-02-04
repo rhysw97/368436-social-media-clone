@@ -67,7 +67,7 @@ export default function PostComment(props) {
                 {comments.toReversed().map((comment, index) => {
                     return <div className="bg-white w-[90%] m-auto rounded-xl p-4" key={index}>
                         <div className="flex items-center flex-col md:gap-2 md:flex-row ">
-                            <img className="w-20 h-20 rounded-full " src={`http://localhost:5000/images/${comment.profilePicture}`}/>
+                            <img className="w-20 h-20 rounded-full " src={`https://gig-matesd.onrender.com/images/${comment.profilePicture}`}/>
                             <h2 className="text-3xl font-semibold">{comment.user}</h2>
                         </div>
                             <p className="py-4 px-3 md:ml-20 md:py-6 text-xl">{comment.message}</p>

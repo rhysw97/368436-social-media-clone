@@ -37,7 +37,7 @@ export default function Post(props) {
         <div className="flex-col px-5 sm:px-8 bg-slate-300 rounded-md shadow-xl shadow-slate-600 gap-6" >
             <div className="flex flex-col sm:flex-col-reverse justify-between mt-2">
                 <div className="flex flex-col items-center px-2 py-4 sm:p-0 sm:justify-start xs:justify-center  sm:flex-row gap-2 mt-2">
-                    <img className="w-[100px] h-[100px] bg-black rounded-full" src={`http://localhost:5000/images/${postData.profilePicture}`}/>
+                    <img className="w-[100px] h-[100px] bg-black rounded-full" src={`https://gig-matesd.onrender.com/images/${postData.profilePicture}`}/>
                     <div className="flex w-[100%] justify-center sm:justify-start items-center sm:flex-row">
                         <p className="mx-2 text-center text-3xl font-semibold">{postData.username}</p>
                     </div>

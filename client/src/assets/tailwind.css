@@ -27,7 +27,7 @@
     }
 
     .input-field{
-        @apply border-black border-2 rounded-lg px-2 my-3;
+        @apply border-black border-2 rounded-lg px-2 my-3 placeholder:text-gray-700;
     }
 
     .button-shadow {

@@ -40,7 +40,7 @@
                w-28 text-center
                hover:bg-green-800
                hover:cursor-pointer
-            shadow-black shadow-md hover:shadow-none
+               shadow-black shadow-md hover:shadow-none
     }
 
     .heading {
@@ -66,6 +66,7 @@
                shadow-black
                shadow-sm
                gothic
+               placeholder:text-gray-700
 
    }
    .dob-input {
@@ -96,6 +97,5 @@ html {
     overflow-x: hidden;
     max-height: screen;
 }
-
-
+
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhaWx3aW5kLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJtYWluLmNzcyJ9 */
