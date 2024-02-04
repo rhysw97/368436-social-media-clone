@@ -17,7 +17,7 @@ export default function Likes(props) {
                 setLikeMessage('Like')
             }
         }
-    })
+    },[])
     
     //function to handle if user clicks the licked button
     const handleLikes = () => {

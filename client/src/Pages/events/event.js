@@ -18,7 +18,10 @@ export default function Event(props) {
     }
 
     return(
-        <div className=" hover:cursor-pointer justify-around bg-green-500 p-4 rounded-lg mx-auto my-2 shadow-black shadow-md md:basis-[45%] lg:basis-[30%] basis-[90%]" onClick={handleClick}>
+        <div className="
+            hover:cursor-pointer justify-around bg-green-500 p-4 rounded-lg mx-auto my-2 shadow-black 
+            shadow-xl md:basis-[45%] lg:basis-[30%] basis-[90%] hover:shadow-none
+        " onClick={handleClick}>
             <div className="flex flex-col">
                 <img className="w-[100%] h-[250px] object-cover" src={props.event.eventPicture } alt=""></img>
                 <h2 className="text-center text-shadow-lg py-5 font-extrabold text-4xl">{props.event.artist}</h2>

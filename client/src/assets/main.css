@@ -29,15 +29,18 @@
     .input-field{
         @apply border-black border-2 rounded-lg px-2 my-3 placeholder:text-gray-700;
     }
+
+    .button-shadow {
+        @apply shadow-black shadow-lg hover:shadow-none
+    }
     
     .button-green {
         @apply rounded-lg bg-green-500 text-white 
                pt-1 pb-1 
                w-28 text-center
                hover:bg-green-800
-               shadow-md
-               hover:shadow-inner
                hover:cursor-pointer
+            shadow-black shadow-md hover:shadow-none
     }
 
     .heading {

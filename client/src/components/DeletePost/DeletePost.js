@@ -26,11 +26,11 @@ export default function DeletePost(props) {
     }
 
     return(
-        <div>
-            <p>Are you sure you would like to delete this post</p>
-            <div classname="options">
-                <p onClick={handleConfimDelete}>Yes</p>
-                <p onClick={handleRejectDelete}>No</p>
+        <div className="mt-8">
+            <p className="mx-8 mb-8">Are you sure you would like to delete this post?</p>
+            <div classname="flex flex-col w-[100%] items-center">
+                <p className='button-green mx-auto mb-5 shadow-black shadow-lg hover:shadow-none' onClick={handleConfimDelete}>Yes</p>
+                <p className='button-green mx-auto shadow-black shadow-lg hover:shadow-none' onClick={handleRejectDelete}>No</p>
             </div>
         </div>
     )
