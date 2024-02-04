@@ -138,7 +138,7 @@ class User {
 
     //function to find user in database by username and update their password
     async updatePassword(username, password) {
-        const user = await this.user.findOneAndUpdate({name: username}, {$set:{password: password}}, {new: true})
+        const user = await this.user.findOneAndUpdate({username: username}, {$set:{password: password}}, {new: true})
     }
 
     //function to get a users profile picture from database by finding them by their username and return the result

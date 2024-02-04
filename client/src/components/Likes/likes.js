@@ -17,10 +17,10 @@ export default function Likes(props) {
                 setLikeMessage('Like')
             }
         }
-    },[])
+    }, [])
     
     //function to handle if user clicks the licked button
-    const handleLikes = () => {
+    const handleLikes = async () => {
         
         //checks if user has already liked the parent post
         if(likedBy.includes(usernameContext)) {
@@ -36,6 +36,8 @@ export default function Likes(props) {
             setLikedBy(currentLikedBy => [...currentLikedBy, usernameContext])
             setLikeMessage('Unlike') //sets message on button to unlike to indicate to user clicking the button will unlike the parent post
         }
+
+        console.log(likedBy)
     }
 
     return(

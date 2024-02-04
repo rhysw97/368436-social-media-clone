@@ -7,7 +7,7 @@ export default function LikedBy(props) {
     useEffect(() => {
         console.log('likes', props.likedBy)
         getUserPictures(props.likedBy)
-    }, [])
+    }, [props.likedBy])
 
     const getUserPictures = async (usersArray) => {
         const users = []
@@ -22,11 +22,11 @@ export default function LikedBy(props) {
         setLikedBy(users)
     }
     //maps the names of users in the likedBy array passed down by parent and then stores it in list of users
-        const listOfUsers = <div className="w-[100%] flex gap-10 justify-center mt-5">
-            {likedBy.map((user) => {
+        const listOfUsers = <div className="w-[100%] flex gap-3 justify-center mt-5">
+            {likedBy.map((user, index) => {
                 return (
-                    <div className="flex flex-column md:flex-row items-center bg-green-500 gap-5 px-5 py-4 w-[90%] rounded-2xl">
-                        <img className="w-[50px] h-[50px] bg-black rounded-full" src={`http://localhost:5000/images/${user.profilePicture}`}/>
+                    <div key={index} className="flex flex-col sm:flex-row items-center bg-green-500 gap-5 px-5 py-4 w-[90%] rounded-2xl">
+                        <img className="w-[100px] h-[100px] bg-black rounded-full" src={`http://localhost:5000/images/${user.profilePicture}`}/>
                         <p className="text-3xl">{user.username}</p>
                        
                     </div>
