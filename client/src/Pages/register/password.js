@@ -44,7 +44,7 @@ export default function Password(props) {
                 props.setPasswordState(password)
             }
         } else {
-            setPasswordMatchMessage(<p className="bg-black rounded-full p-2 text-center mb-2">Passwords must match</p>)
+            setPasswordMatchMessage(<p className="text-white bg-black rounded-full p-2 text-center mb-2">Passwords must match</p>)
         } 
     }
 

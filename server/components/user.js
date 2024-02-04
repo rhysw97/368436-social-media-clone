@@ -102,6 +102,7 @@ class User {
                 interestedGigs: data.interestedGigs,
                 artists: data.artists 
             }}, {new: true})
+            
         } else {
             const userData = await this.user.findOneAndUpdate({username: data.username}, {$set:{
                 name: data.name,

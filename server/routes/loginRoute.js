@@ -12,7 +12,7 @@ async function waitForLoginDetails(data, response, request) {
     //
     const currentUser = request.app.locals.user 
     const loginData = await currentUser.checkLoginDetails(data);
-    console.log(loginData)
+    
     if(loginData.accepted) {
         request.session.username = loginData.username
         const data = {

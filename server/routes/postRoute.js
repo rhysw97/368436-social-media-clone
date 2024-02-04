@@ -69,6 +69,7 @@ router.delete('/deletePost', (request, response) => {
     deletePost(postID, request.session.username, response)
 })
 
+//endpoint to add comment to post calls posts comment on post function in order to add it to the database
 router.post('/comment', (request, response) => {
     console.log('NEW Comment',request.body)
     console.log('name', request.session.username)
@@ -95,10 +96,12 @@ async function getRecentEventPosts(numberOfPosts, eventId, response, user) {
     response.send(recentEventPosts)
 }
 
+//used to get current profile pictures of the users in an array and returns an object with username as key
+//and picture link as value
 async function getCurrentProfilePictures(arrayToChange, fieldName, user) {
-    const uniqueNamesSet = new Set(arrayToChange.map(item => item[fieldName]))
+    const uniqueNamesSet = new Set(arrayToChange.map(item => item[fieldName])) //uses set so don't have duplicate names
     const profilePictures = {}
-    for (const name of uniqueNamesSet) {
+    for (const name of uniqueNamesSet) { //loops through set
        const userPicture = await user.returnProfilePicture(name)
        profilePictures[name] = userPicture
     }
