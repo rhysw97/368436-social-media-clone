@@ -26,9 +26,8 @@ export default function Register() {
     const [emailUsed, setEmailUsed] = useState()
     const [validAge, setValidAge] = useState();
     const [emailValid, setEmailValid] = useState();
-
     //regex to check for valid email. checks there in this format wordsordigits@wordsordigits.co(.uk)
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}([a-z]{2})?$/
     const navigate = useNavigate();
   
 
@@ -73,9 +72,10 @@ export default function Register() {
         }
     }
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
-
+ 
         if(currentIsValid && validAge && emailValid) {
             const data = { 
                 username: usernameRef.current.value, 
@@ -102,7 +102,7 @@ export default function Register() {
         }  else {
             setUsernameUsed(null) 
         }
-
+        console.log(response)
         if(!response.username && !response.email) {
             navigate('/edit-profile')
         }
@@ -134,7 +134,7 @@ export default function Register() {
             {emailMessage}
               
             <div className="flex flex-col items-center w-[100%]">
-                <label for="dob" className="text-center text-white text-2xl">Date Of Birth</label>
+                <label htmlFor="dob" className="text-center text-white text-2xl">Date Of Birth</label>
                 <input
                     id="dob"
                     type="date"
