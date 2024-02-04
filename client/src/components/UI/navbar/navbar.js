@@ -21,7 +21,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar fixed top-0 min-h-screen w-16 
+        <div className="navbar fixed top-0 min-h-screen w-16 pb-8
         flex flex-col justify-end sm:justify-start
         bg-gray-900 text-white shadow-lg">
             <NavbarIcon icon={profileIcon} text='Profile Page'/>

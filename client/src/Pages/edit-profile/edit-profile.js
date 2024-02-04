@@ -1,8 +1,9 @@
 import { getRequest} from "../../utils/server-queries.ts";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom'
 import Tags from '../../components/Tags/Tags.js'
 import Navbar from "../../components/UI/navbar/navbar.js";
+import "./edit-profile.css"
 
 export default function EditProfile() {
     //profile inputs
@@ -11,6 +12,8 @@ export default function EditProfile() {
     const [bio, setBio] = useState("");
     const [genres, setGenres] = useState(null);
     const [artists, setArtists] = useState(null);
+    const [fileName, setFileName] = useState('No File Uploaded')
+    const fileInputRef = useRef(null)
     let artistList = []
     const navigate = useNavigate()
 
@@ -58,22 +61,25 @@ export default function EditProfile() {
         navigate('/profile')
     };
 
-    const handleChange = (e) => {
-        const file = e.target.files[0];
+    const handleChange = () => {
+        const file = fileInputRef.current.files[0];
+        setFileName(`Uploaded ${file.name}`)
         setImage(() => file);
     };
   
     return (
         <div>
             <Navbar />
-            <div className="flex flex-col  w-[100%] mx-auto" >
-                <h1 className="heading">Edit Profile</h1>
+            <div className="flex flex-col justify-center w-[100%] mx-auto" >
+                <header className='flex justify-center'>
+                    <h1 className='text-5xl heading'>Edit Profile</h1>
+                </header>
                 <div className="flex items-center flex-col ml-16">
                     <form  className="w-[100%] flex flex-col items-center" onSubmit={handleSubmit}>
-                        <div className="w-[100%] flex flex-col items-center">
+                        <div className="w-[100%] flex flex-col items-center mb-5">
                             <label className="text-white text-xl">Name</label>
                             <input
-                                className="input-field"
+                                className="input-field w-[90%]"
                                 placeholder="Name"
                                 name='name'
                                 defaultValue={name}
@@ -81,30 +87,26 @@ export default function EditProfile() {
                                 required
                             />
                         </div>
-                        <div className="w-[50%]">
-                    
-                            <input
-                                className="
-                                    block w-full text-sm 
-                                    text-gray-900 border 
-                                    border-gray-300 rounded-lg 
-                                    cursor-pointer
-                                    bg-gray-50 dark:text-gray-400 
-                                    focus:outline-none dark:bg-gray-700 
-                                    dark:border-gray-600 dark:placeholder-gray-400
-                                "
-                                name='file'
-                                type="file"
-                                id="file_input"
-                                accept="image/*"
-                                onChange={handleChange}
-                                placeholder="Upload new profile picture"
-                            />
+                        <div className="w-full flex justify-center items-center flex-col gap-1 mb-5">
+
+                            <label className="text-white button-green w-[90%] p-3">Upload Profile Image 
+                                <input
+                                    className=""
+                                    name='file'
+                                    type="file"
+                                    id="file_input"
+                                    accept="image/*"
+                                    ref={fileInputRef}
+                                    onChange={handleChange}
+                                    placeholder="Upload new profile picture"
+                                />
+                            </label>
+                            <p className='text-white'>{fileName}</p>
                         </div>
-                        <div className="flex flex-col w-[50%] items-center ">
-                            <label className="text-white text-xl">Bio</label>
+                        <div className="flex flex-col w-[90%] items-center">
+                            <label className="text-white text-xl p-3">Bio</label>
                             <textarea
-                            className="border-black border-2 h-20 placeholder:translate-y-20 w-full"
+                            className="border-black border-2 h-20 rounded-xl px-3 py-2 min-h-[200px] placeholder:translate-y-20 w-full"
                             placeholder="Bio"
                             name='bio'
                             type="text"
@@ -113,18 +115,12 @@ export default function EditProfile() {
                             />
                         </div>
 
-                        <div className="text-white">
-                            <div>
-                                <h2 className="text-xl">Add your favourite Genres</h2>
-                                {genres && <Tags callback={setGenres} taglist={genres}></Tags>}
-                                
-                            </div>
-                            <div>
-                                <h2>Add your favourite Artists</h2>
-                                {artists && <Tags  callback={setArtists} taglist={artists}></Tags>}
-                            </div>
+                        <div className="text-white flex flex-col lg:flex-row w-[90%] gap-10 justify-center m-5" >
+                            {genres && <Tags callback={setGenres} taglist={genres} title={'Add your favourite Genres'}></Tags>}                 
+                            {artists && <Tags  callback={setArtists} taglist={artists} title={'Add your favourite Artists'}></Tags>}
+                            
                         </div>
-                        <button className="button-green" type="submit" >Submit</button>
+                        <button className="button-green mb-5 w-[90%] py-3" type="submit" >Submit</button>
                     </form>
                 </div>
             </div>

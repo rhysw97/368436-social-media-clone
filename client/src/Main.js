@@ -40,7 +40,7 @@ function Main() {
     <div>
       <USERNAME.Provider value={{usernameContext, setUsernameContext}}>
       <LOGGEDIN.Provider value={{loggedInContext, setLoggedInContext}}>
-        <div className='min-h-screen '>
+        <div className='min-h-screen mb-10'>
           <div className="fixed min-h-screen w-screen top-0 left-0" style={{
                   backgroundImage: 'url(https://www.lastminutemusicians.com/how_to_get_gigs/wp-content/uploads/2012/04/Live-gig.jpg)',
                   filter: 'blur(8px)',

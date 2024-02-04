@@ -63,18 +63,19 @@ export default function PostComment(props) {
    //maps reversed comment array so latest post will be at top 
     return (
         <div className="h-screen">
-            <div className="comments flex flex-col gap-10">
+            <div className="comments bg-gray-400 flex flex-col gap-3">
                 {comments.toReversed().map((comment, index) => {
-                    return <div className="bg-white w-[90%] m-auto rounded-xl p-10" key={index}>
-                        <div className="flex items-center">
-                            <img className="w-20 h-20" src={`http://localhost:5000/images/${comment.profilePicture}`}/>
-                            <h2>{comment.user}</h2>
+                    return <div className="bg-white w-[90%] m-auto rounded-xl p-4" key={index}>
+                        <div className="flex items-center flex-col md:gap-2 md:flex-row ">
+                            <img className="w-20 h-20 rounded-full " src={`http://localhost:5000/images/${comment.profilePicture}`}/>
+                            <h2 className="text-3xl font-semibold">{comment.user}</h2>
                         </div>
-                            <p>{comment.message}</p>
+                            <p className="py-4 px-3 md:ml-20 md:py-6 text-xl">{comment.message}</p>
                     </div>
                 })}
+                <div className="h-[150px]"></div>
             </div>
-            <div className="fixed flex items-center flex-col w-[100%] bottom-0 left-0 ">
+            <div className="fixed flex items-center flex-col w-[100%] bottom-0 left-0 bg-green-500 py-4">
                 <textarea className="border-black border-2 w-[70%] text-lg rounded-lg" placeholder="add comment" ref={commentInputRef}/>
                 <button className="button-green w-[50%] border-black border-2" onClick={commentOnPost}>Send</button>
             </div>

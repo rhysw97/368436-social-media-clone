@@ -63,15 +63,8 @@ export default function Login() {
             backgroundImage: './../../assets/images/gig-picture.jpg',
         }} className="  flex flex-col w-[100%] gap-30">
             <header className=" flex flex-col w-[100%] items-center mx-auto my-0">
-                <h1 className="heading mx-auto my-0">Gig Mates</h1>
+                <h1 className="heading z-10 mx-auto my-0">Gig Mates</h1>
             </header>
-
-            <div className="fixed min-h-screen w-screen top-0 left-0" style={{
-                backgroundImage: 'url(https://www.lastminutemusicians.com/how_to_get_gigs/wp-content/uploads/2012/04/Live-gig.jpg)',
-                filter: 'blur(8px)',
-                zIndex: '-10',
-            }}></div>
-            <div className="fixed -z-10 min-h-screen w-screen top-0 left-0 bg-black opacity-40" ></div>
 
             <div className="flex lg:flex-row items-center w-[100%] h-screen flex-col gap-10 lg:gap-0 pt-8 lg:pt-0 lg:justify-evenly text-white ">
                 <section className="lg:h-[100%] flex items-center lg:w-[30%] w-[100%]">

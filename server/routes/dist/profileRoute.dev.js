@@ -9,7 +9,8 @@ var path = require('path');
 var multer = require('multer');
 
 var _require = require("http"),
-    request = _require.request;
+    request = _require.request; //sets up multer storage and specifies where it will be stored //from Daves app in class
+
 
 var storage = multer.diskStorage({
   destination: './public/uploads',
@@ -17,7 +18,8 @@ var storage = multer.diskStorage({
     var ext = path.extname(file.originalname);
     cb(null, "".concat(Date.now()).concat(ext));
   }
-});
+}); //route for edit if user doesn't send back image file
+
 router.post('/edit', multer({
   storage: storage
 }).single('file'), function (request, response) {
@@ -30,8 +32,9 @@ router.post('/edit', multer({
     artists: request.body.artists.split(',')
   };
   console.log('data', data);
-  request.app.locals.user.updateProfile(data);
-});
+  request.app.locals.user.updateProfile(data); //calls update profile function in user class to update the user profile
+}); //route for edit profile if user doesn't send back a image file 
+
 router.post('/editWithFile', multer({
   storage: storage
 }).single('file'), function (request, response) {
@@ -46,10 +49,11 @@ router.post('/editWithFile', multer({
   };
   console.log('data', data);
   request.app.locals.user.updateProfile(data);
-});
+}); //post route to remove a genre
+
 router.post('/remove-genre', function (request, response) {
   removeGenre();
-});
+}); //unfinished function was never used
 
 function removeGenre() {
   var data;
@@ -82,7 +86,8 @@ router.get('/get-profile', function (request, response) {
   } else {
     request.app.locals.user.getProfileData(request.session.username, response);
   }
-});
+}); //route to update password with new password 
+
 router.post('/update-password', function (request, response) {
   console.log(request.body.password);
   request.app.locals.user.updatePassword(request.session.username, request.body.password);

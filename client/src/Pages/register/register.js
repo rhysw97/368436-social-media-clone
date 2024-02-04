@@ -28,7 +28,7 @@ export default function Register() {
     const [emailValid, setEmailValid] = useState();
 
     //regex to check for valid email. checks there in this format wordsordigits@wordsordigits.co(.uk)
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}\$/
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     const navigate = useNavigate();
   
 
@@ -69,7 +69,7 @@ export default function Register() {
             setAgeMessage(null)
         } else { //otherwise show user message that they need to be 18 or over
             setValidAge(currentValidAge => currentValidAge = false);
-            setAgeMessage(<p className="text-white">You must be 18 or over to register</p>)
+            setAgeMessage(<p className="text-white bg-black rounded-full">You must be 18 or over to register</p>)
         }
     }
 
@@ -98,7 +98,7 @@ export default function Register() {
         }
 
         if(response.username) {
-            setUsernameUsed(<p className="text-white">Username already in use</p>) 
+            setUsernameUsed(<p className="text-white ">Username already in use</p>) 
         }  else {
             setUsernameUsed(null) 
         }
@@ -134,7 +134,7 @@ export default function Register() {
             {emailMessage}
               
             <div className="flex flex-col items-center w-[100%]">
-                <label for="dob" className="text-center text-white">Date Of Birth</label>
+                <label for="dob" className="text-center text-white text-2xl">Date Of Birth</label>
                 <input
                     id="dob"
                     type="date"

@@ -4,6 +4,7 @@ const path = require('path')
 const multer = require('multer');
 const { request } = require("http");
 
+//sets up multer storage and specifies where it will be stored //from Daves app in class
 const storage = multer.diskStorage({
     destination: './public/uploads',
     filename: (req, file, cb) => {
@@ -12,6 +13,8 @@ const storage = multer.diskStorage({
     },
   });
 
+
+  //route for edit if user doesn't send back image file
 router.post('/edit', multer({ storage }).single('file'), (request, response) => {
   console.log('request', request.body)
   const data = {
@@ -23,9 +26,10 @@ router.post('/edit', multer({ storage }).single('file'), (request, response) => 
   }
 
   console.log('data', data)
-  request.app.locals.user.updateProfile(data)
+  request.app.locals.user.updateProfile(data) //calls update profile function in user class to update the user profile
 })
 
+//route for edit profile if user doesn't send back a image file 
 router.post('/editWithFile', multer({ storage }).single('file'), (request, response) => {
   console.log(request.body)
   const data = {
@@ -41,10 +45,12 @@ router.post('/editWithFile', multer({ storage }).single('file'), (request, respo
   request.app.locals.user.updateProfile(data)
 })
 
+//post route to remove a genre
 router.post('/remove-genre', (request, response) => {
   removeGenre()
 })
 
+//unfinished function was never used
 async function removeGenre() {
   const data = await request.app.locals.user.findOne({usename: request.session.username})
 
@@ -63,6 +69,7 @@ router.get('/get-profile', (request, response) => {
 
 })
 
+//route to update password with new password 
 router.post('/update-password', (request, response) => {
   console.log(request.body.password)
   request.app.locals.user.updatePassword(request.session.username, request.body.password)

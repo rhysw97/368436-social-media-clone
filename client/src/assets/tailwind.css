@@ -37,6 +37,7 @@
                hover:bg-green-800
                shadow-md
                hover:shadow-inner
+               hover:cursor-pointer
     }
 
     .heading {
@@ -62,12 +63,36 @@
                shadow-black
                shadow-sm
                gothic
+               placeholder:text-gray-700
 
    }
    .dob-input {
     
    }
     
+}
+
+
+::-webkit-scrollbar {
+    z-index: 100;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    min-height: screen;
+    z-index: 100;
+    background-color: rgba(14, 14, 14, 0.946);   
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    z-index: 1000;
+    background-color: rgb(84, 84, 84);
+}
+
+html {
+    overflow-x: hidden;
+    max-height: screen;
 }
 
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhaWx3aW5kLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJtYWluLmNzcyJ9 */

@@ -27,11 +27,12 @@ async function waitForLoginDetails(data, response, request) {
     }  
 }
 
+//destroys session which also removes it from database
 router.post('/logout', (request, response) => {
     request.session.destroy()
-    console.log('Yo', request.session)
 })
 
+//checks for user login details
 router.get('/checkLoggedIn', (request, response) => {
     if(request.session.username) {
         console.log(request.session)

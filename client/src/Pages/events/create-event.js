@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { getRequest, postRequest } from "../../utils/server-queries.ts";
 import Navbar from "../../components/UI/navbar/navbar.js";
 
@@ -9,6 +9,7 @@ export default function CreateEvent(props) {
     const imageInputRef = useRef(null)
     const dateInputRef = useRef(null)
     const timeInputRef = useRef(null)
+    const [invalidDateMessage, setInvalidDateMessage] = useState(null)
     
     const handleSubmit = () => {
         const data = {
@@ -31,24 +32,35 @@ export default function CreateEvent(props) {
     }
 
     const createEvent = async(data) => {
-       await postRequest('events', data)
-       const response = await getRequest('events/getEvents')
-       console.log(response)
-       props.setEventList(response)
-       props.modalActive(false)
+        if( new Date(data.date) > Date.now()) {
+            await postRequest('events', data)
+            const response = await getRequest('events/getEvents')
+            console.log(response)
+            props.setEventList(response)
+            props.modalActive(false)
+
+        } else {
+            setInvalidDateMessage(<p className="text-lg">Please enter a date in the future</p>)
+        }
 
     }
 
     return(
-        <div>
-            <form className="flex flex-col items-center text-black h-screen justify-evenly">
-                <input className="input-field" placeholder="Artist Name" ref={artistInputRef} required/>
-                <input className="input-field" placeholder="Genre" ref={genreInputRef} required/>
-                <input className="input-field" placeholder="Location" ref={locationInputRef} required/>
-                <input className="input-field" placeholder="Event Image Link" ref={imageInputRef} required/>
-                <input className="input-field" type="date" ref={dateInputRef} required/>
-                <input className="input-field text-center" type="time" ref={timeInputRef} required/>
-
+        <div className="h-full pb-20">
+            <form className="flex flex-col items-center text-black h-[100%] pb-5 justify-evenly bg-gray-400">
+                <input className="input-field w-[90%]" placeholder="Artist Name" ref={artistInputRef} required/>
+                <input className="input-field w-[90%]" placeholder="Genre" ref={genreInputRef} required/>
+                <input className="input-field w-[90%]" placeholder="Location" ref={locationInputRef} required/>
+                <input className="input-field w-[90%]" placeholder="Event Image Link" ref={imageInputRef} required/>
+                <div className="flex flex-col w-[100%] items-center">
+                    <label className=" w-[100%] text-center text-xl" >Date of gig</label>
+                    <input className="input-field w-[90%]" type="date" ref={dateInputRef} required/>
+                    {invalidDateMessage}
+                </div>
+                <div className="flex flex-col w-[100%] items-center">
+                    <label className="w-[90%] text-center text-xl" >Time of gig</label>
+                    <input className="input-field text-center w-[90%]" type="time" ref={timeInputRef} required/>
+                </div>
                 <button className="button-green" type="submit" onClick={handleSubmit}>Create Event</button>
             </form>
         </div>

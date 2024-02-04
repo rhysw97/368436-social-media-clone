@@ -16,12 +16,12 @@ function waitForLoginDetails(data, response, request) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          console.log('login data', data);
+          //
           currentUser = request.app.locals.user;
-          _context.next = 4;
+          _context.next = 3;
           return regeneratorRuntime.awrap(currentUser.checkLoginDetails(data));
 
-        case 4:
+        case 3:
           loginData = _context.sent;
           console.log(loginData);
 
@@ -39,15 +39,29 @@ function waitForLoginDetails(data, response, request) {
             });
           }
 
-        case 7:
+        case 6:
         case "end":
           return _context.stop();
       }
     }
   });
-}
+} //destroys session which also removes it from database
+
 
 router.post('/logout', function (request, response) {
   request.session.destroy();
+}); //checks for user login details
+
+router.get('/checkLoggedIn', function (request, response) {
+  if (request.session.username) {
+    console.log(request.session);
+    response.send({
+      username: request.session.username
+    });
+  } else {
+    response.send({
+      username: false
+    });
+  }
 });
 module.exports = router;

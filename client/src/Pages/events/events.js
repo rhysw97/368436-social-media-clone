@@ -12,48 +12,8 @@ export default function Events() {
 
     async function getEvents() {
         const data = await getRequest('events/getEvents')
-
-        setEvents([
-            {
-            artist: 'Black Mass',
-            id: '0',
-            location: 'O2 Academy- Bristol',
-            date: '24th Sep 2024',
-            time: '19:00',
-            img: BlackMassImage
-            
-        },
-        {
-            artist: 'Quelle Chris',
-            id: '1',
-            location: 'London Roundhouse',
-            date: '7th Mar 2024',
-            time: '18:00',
-            img: QuelleChrisImage
-            
-        },
-        {
-            artist: 'Hamish Hawk',
-            id: '2',
-            location: 'O2 Academy- Brixton',
-            date: '19th Aug 2024',
-            time: '18:30',
-            img: HamishHawkImage
-            
-        }
-    ])
-        data.forEach(event => {
-            setEvents(currentEvents => [...currentEvents, {
-
-                id: event._id,
-                artist: event.artist,
-                genre: event.genre,
-                location: event.location,
-                date: event.date,
-                time: event.time,
-                img: event.eventPicture
-            }])
-        })
+    
+        setEvents(data)
     }
 
     useEffect(() => {
@@ -68,15 +28,15 @@ export default function Events() {
                 <h1 className='text-5xl heading'>Events</h1>
             </header>
 
-            <div className="ml-16 flex flex-row max-w-[100%] flex-wrap">
+            <div className="ml-16 flex flex-col max-w-[100%] flex-wrap">
                 <div className="flex flex-row gap-2 flex-wrap w-[100%]">
-                    {events.map(event => {
-                        return <Event key={event.id} event={event}/>
+                    {events.toReversed().map(event => {
+                        return <Event key={event._id} event={event}/>
                     })}
-                    
                 </div>
+                <div className='h-[100px]'></div>
             </div>
-            <div className="bg-green-700 py-4 px-10 rounded-full shadow-lg shadow-slate-700  fixed bottom-4 right-5 hover:shadow-none hover:bottom-3" onClick= { () => setCreateEventModalActive(true)} ><p>Create Event</p></div>
+            <div className="bg-green-700 py-4 px-10 rounded-full shadow-lg shadow-slate-700  fixed bottom-4 right-5 hover:shadow-none hover:bottom-3 hover:cursor-pointer" onClick= { () => setCreateEventModalActive(true)} ><p>Create Event</p></div>
             <Modal show={createEventModalActive} close={()=> setCreateEventModalActive(false)} content={<CreateEvent setEventList={setEvents} modalActive={setCreateEventModalActive}/>} title={"Create Event"}/>
         </div>
     );

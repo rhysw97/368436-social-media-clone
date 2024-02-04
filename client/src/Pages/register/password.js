@@ -42,7 +42,7 @@ export default function Password(props) {
                 props.setPasswordState(password)
             }
         } else {
-            setPasswordMatchMessage(<p className="text-white">Passwords must match</p>)
+            setPasswordMatchMessage(<p className="text-white bg-black rounded-full p-2">Passwords must match</p>)
         } 
     }
 
@@ -90,7 +90,7 @@ export default function Password(props) {
                 className="input-field"
             />
             <div className="text-white">
-              {passwordRequirements.map((requirement, index) => <p key={index}>{requirement}</p>)}
+              {passwordRequirements.map((requirement, index) => <p className="bg-black rounded-full p-2 text-center mb-2" key={index}>{requirement}</p>)}
             </div>
             
         </div>

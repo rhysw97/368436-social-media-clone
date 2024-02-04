@@ -25,31 +25,35 @@ export default function Post(props) {
 
     if(postData.username === username && postData.id) {
         posterButtons =
-            <div className="flex mb-6 justify-between gap-2">
-                <p className="button-green" onClick={()=> setEditModalActive(true)}>Edit</p>
-                <p className="button-green mr-4" onClick={()=> setDeleteModalActive(true)}>Delete</p>
+            <div className="flex justify-center flex-row align-center sm:justify-end gap-2">
+                <p className="button-green self-start sm:w-32 w-full" onClick={()=> setEditModalActive(true)}>Edit</p>
+                <p className="button-green self-start sm:w-32 w-full" onClick={()=> setDeleteModalActive(true)}>Delete</p>
             </div>
     } else {
         posterButtons = null
     }
 
     return(
-        <div className="flex-col px-[20px] bg-slate-300 rounded-md shadow-xl shadow-slate-600 gap-6" >
-            <div className="flex mt-1">
-                    <img className="w-[50px] h-[50px]  bg-black rounded-full" src={`http://localhost:5000/images/${postData.profilePicture}`}/>
-                <div className="flex w-[100%] justify-between flex-col sm:flex-row">
-                    <p className="mx-[6%] pt-1 text-3xl">{postData.username}</p>
-                {posterButtons}
+        <div className="flex-col px-5 sm:px-8 bg-slate-300 rounded-md shadow-xl shadow-slate-600 gap-6" >
+            <div className="flex flex-col sm:flex-col-reverse justify-between mt-2">
+                <div className="flex flex-col items-center px-2 py-4 sm:p-0 sm:justify-start xs:justify-center  sm:flex-row gap-2 mt-2">
+                    <img className="w-[100px] h-[100px] bg-black rounded-full" src={`http://localhost:5000/images/${postData.profilePicture}`}/>
+                    <div className="flex w-[100%] justify-center sm:justify-start items-center sm:flex-row">
+                        <p className="mx-2 text-center text-3xl font-semibold">{postData.username}</p>
+                    </div>
+                    
                 </div>
+              
+                {posterButtons}
             </div>
-            <div className="my-[10px] min-h-[100px] flex align-middle">
-                <p className="mx-[9.5%] my-auto text-xl">{message}</p>
+            <div className=" py-8 flex align-middle">
+                <p className="my-auto text-xl text-wrap">{message}</p>
             </div>
             {postData.id && // only shows if postData has id so it isn't a temp post
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-3">
                 
                     <Likes className= "" likes ={postData.likes} post={postData}></Likes>
-                    <div className="px-[20%]">
+                    <div className="sm:px-16">
                         <p className=" w-[100%] button-green mb-5" onClick={()=> {setCommentsModalActive(true)}}>comments</p>
                     </div>
                     <Modal show={commentsModalActive} close={()=> setCommentsModalActive(false)} content={<PostComment id={postData.id}/>} title={"Comments"}/>

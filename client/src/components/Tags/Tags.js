@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 //function to allow user to add tags to a list
 function Tags(props) {
@@ -47,19 +48,23 @@ function Tags(props) {
   }
 
   return (
-    <div className="w-[100%]">
-      <ul className='flex flex-col gap-2 h-500px overflow-y-scroll bg-white p-2'>
-        {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-500 rounded-r-full' >
-          <p className='bg-gray-500 w-[100%] py-2 rounded-r-full'>{tag}</p>
-          <p onClick={()=>{
-        
-            removeTag(tag)
-          }} className='hover:text-green-800 px-4 py-2 bg-green-500 rounded-full h-[90%]'>x</p>
-        </li>})}
-      </ul>
-      <div className='flex'>
-        <input className='text-black py-2 pl-2 rounded-l-md' type="text" ref={inputRef}></input>
-        <p className='bg-green-500 p-2 rounded-r-md hover:bg-green-700' onClick={addTag}>add</p>
+    <div className="w-[100%] flex flex-col">
+      <div className=' border-green-500 border-2 rounded-t-lg w-full'>
+        <p className='bg-green-500 text-center text-2xl py-2 px-2'>{props.title}</p>
+        <ul className='flex flex-col gap-2 min-h-[400px] max-h-[400px] overflow-y-scroll p-2' >
+          {tags.map((tag, i) =>{ return <li key={i} className='flex justify-between items-center bg-gray-500 h-[100px] rounded-r-full pl-2' >
+            <p className='bg-gray-500 w-[100%] py-2 rounded-r-full text-wrap'>{tag}</p>
+            <div className=' flex items-center justify-center hover:text-green-800 pr-3 hover:cursor-pointer' onClick={()=>{
+              removeTag(tag)
+            }}>
+              <p className='self-center'><FaTrash></FaTrash></p>
+            </div>
+          </li>})}
+        </ul>
+      </div>
+      <div className='flex self-end w-[100%]'>
+        <input className='text-black py-2 pl-2 rounded-bl-lg w-full' type="text" ref={inputRef}></input>
+        <p className='bg-green-500 p-2 rounded-br-lg hover:bg-green-700 cursor-pointer shadow-md w-[30%] md:w-[25%] text-center' onClick={addTag}>add</p>
       </div>
     </div>
   );

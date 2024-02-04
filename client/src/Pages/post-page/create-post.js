@@ -72,12 +72,16 @@ export default function CreatePost() {
                 <h1 className='text-5xl heading'>Feed</h1>
             </header>
             <div className='ml-16'>
-                <div className=" flex flex-col w-[95%]  mx-auto gap-6  mb-[15%]">
+                <div className=" flex flex-col w-[95%]   mx-auto gap-6  mb-[15%] ">
                     {posts.map((post, index) => <Post key={post.id} post={post} setPostList={setPosts}  />)}
+                    <div className='h-[75px]'></div>
                 </div>
-                <div className ="flex pb-[20px] flex-col items-center mt-10 mx-auto fixed bottom-0 w-[100%] placeholder:text-black bg-green-500">
-                    <textarea className="border-black border-2 w-[70%] text-lg rounded-lg px-2 my-3"id="postBox" type="text" placeholder="What is on your mind" ref={postInputRef}/>
-                    <p className="button-green w-[50%] border-black border-2" onClick={newPost}>Post</p>
+                <div className='fixed w-[100%] bottom-0'>
+                    <div className ="flex pb-[20px] flex-col p-0 m-0  items-center justify-center placeholder:text-black content-box bg-green-500">
+                        <textarea className="border-black border-2 w-[70%] text-lg rounded-lg mr-16 px-2 my-3 placeholder:text-gray-700"id="postBox" type="text" placeholder="What is on your mind..." ref={postInputRef}/>
+                        <p className="button-green w-[70%] xs:w-[50%] border-black border-2 mr-16" onClick={newPost}>Post</p>
+                        
+                    </div>
                 </div>
             </div>
         </div>
